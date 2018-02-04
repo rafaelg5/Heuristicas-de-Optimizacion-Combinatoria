@@ -1,1 +1,1 @@
-# Heuristicas-de-Optimizacion-Combinatoria
+# Heurísticas de Optimización Combinatoria
