@@ -1,9 +1,17 @@
 [0m[[0m[0minfo[0m] [0m[0mPackaging /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/recocido-simulado_2.12-1.0.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Main.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Types$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Types$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Types.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Types.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Definitions$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Definitions$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Main$delayedInit$body.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Main.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Main$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Definitions.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Definitions.class[0m
 [0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m

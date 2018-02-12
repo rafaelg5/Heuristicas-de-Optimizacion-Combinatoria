@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/main/scala/Threshold.scala:14:7: only traits and abstract classes can have declared but undefined members[0m
+[0m[[0m[31merror[0m] [0m[0m  def acceptByThresholds(temp:Double, s:Types.Solution)[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

@@ -4,7 +4,7 @@
 		module="recocido-simulado_2.12"
 		revision="1.0"
 		status="integration"
-		publication="20180211125646"
+		publication="20180211154847"
 	>
 		<description>
 		recocido-simulado
@@ -33,5 +33,7 @@
 		<dependency org="org.scala-lang" name="scala-compiler" rev="2.12.3" conf="scala-tool->default,optional(default)"/>
 		<dependency org="org.scala-lang" name="scala-library" rev="2.12.3" conf="scala-tool->default,optional(default);compile->default(compile)"/>
 		<dependency org="org.typelevel" name="cats_2.12" rev="0.9.0" conf="compile->default(compile)"/>
+		<dependency org="org.scalactic" name="scalactic_2.12" rev="3.0.4" conf="compile->default(compile)"/>
+		<dependency org="org.scalatest" name="scalatest_2.12" rev="3.0.4" conf="test->default(compile)"/>
 	</dependencies>
 </ivy-module>

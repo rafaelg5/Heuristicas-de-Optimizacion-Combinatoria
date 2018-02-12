@@ -1,2 +1,13 @@
 run
 exit
+compile
+run
+compile
+[]
+compile
+test
+compile
+exit
+test
+compile
+exit
