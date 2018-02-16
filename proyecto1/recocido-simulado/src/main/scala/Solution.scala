@@ -4,4 +4,8 @@ class Solution(size: Int) {
   def neighbor(): Solution = {
     return null
   }
+
+  def f(): Double = {
+    return 0
+  }
 }

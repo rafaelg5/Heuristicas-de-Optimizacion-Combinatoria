@@ -63,3 +63,13 @@ clean cleanFiles
 cleanFiles
 clean
 doc
+compile
+clean
+cleanFiles
+doc
+compile
+doc
+clean
+cleanFiles
+doc
+exit

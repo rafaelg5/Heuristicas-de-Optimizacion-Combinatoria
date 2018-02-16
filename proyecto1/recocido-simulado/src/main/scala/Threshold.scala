@@ -1,11 +1,28 @@
 
 class Threshold{
 
-    def computeBatch(temp:Double, s:Solution): (Double, Solution) = {
-      return (0.0, null)
-    }
+  /**
+  * Cálcula el promedio de soluciones aceptadas y la última solución dado un
+  * número fijo de soluciones aceptadas llamado lote.
+  * @param temp la temperatura inicial
+  * @param s una solución
+  */
+  def computeBatch(temp:Double, s:Solution): (Double, Solution) = {
+    /*
+    var counter = 0
+    val batchSize = 1000
+    while (c < batchSize){
+    newSolution = s.neighbor()
+    if()}*/
+    return (0.0, null)
+  }
 
-    def acceptByThresholds(temp:Double, s:Solution): Unit = {
+  /**
+  * Heurística de aceptación por umbrales
+  * @param temp la temperatura inicial
+  * @param s una solución
+  */
+  def acceptByThresholds(temp:Double, s:Solution): Unit = {
 
-    }
+  }
 }

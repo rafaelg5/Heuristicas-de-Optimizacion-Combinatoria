@@ -86,7 +86,7 @@
         <span class="name">Temperature</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="_root_">root</a></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="_root_">root</a></dd></dl></div>
     </li>
               </ul>
             </div>
@@ -115,7 +115,7 @@
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"></div><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -165,10 +165,10 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="Temperature#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;():Temperature"></a><a id="&lt;init&gt;:Temperature"></a>
+              <ol><li name="Temperature#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(ti:Double,instanceSize:Int):Temperature"></a><a id="&lt;init&gt;:Temperature"></a>
       <span class="permalink">
-      <a href="Temperature.html#&lt;init&gt;():Temperature" title="Permalink">
+      <a href="Temperature.html#&lt;init&gt;(ti:Double,instanceSize:Int):Temperature" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -177,10 +177,10 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Temperature</span><span class="params">()</span>
+        <span class="name">Temperature</span><span class="params">(<span name="ti">ti: <span class="extype" name="scala.Double">Double</span></span>, <span name="instanceSize">instanceSize: <span class="extype" name="scala.Int">Int</span></span>)</span>
       </span>
       
-      
+      <p class="shortcomment cmt">crea una nueva temperatura inicial</p><div class="fullcomment"><div class="comment cmt"><p>crea una nueva temperatura inicial</p></div><dl class="paramcmts block"><dt class="param">ti</dt><dd class="cmt"><p>el valor inicial</p></dd><dt class="param">instanceSize</dt><dd class="cmt"><p>el tamaño del ejemplar</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -255,7 +255,7 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="Temperature#binarySearch" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="Temperature#binarySearch" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="binarySearch(s:Solution,percentage:Double,temp1:Double,temp2:Double):Double"></a><a id="binarySearch(Solution,Double,Double,Double):Double"></a>
       <span class="permalink">
       <a href="Temperature.html#binarySearch(s:Solution,percentage:Double,temp1:Double,temp2:Double):Double" title="Permalink">
@@ -270,7 +270,7 @@
         <span class="name">binarySearch</span><span class="params">(<span name="s">s: <a href="Solution.html" class="extype" name="Solution">Solution</a></span>, <span name="percentage">percentage: <span class="extype" name="scala.Double">Double</span></span>, <span name="temp1">temp1: <span class="extype" name="scala.Double">Double</span></span>, <span name="temp2">temp2: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
       </span>
       
-      
+      <p class="shortcomment cmt">Búsqueda binaria para la temperatura inicial</p><div class="fullcomment"><div class="comment cmt"><p>Búsqueda binaria para la temperatura inicial</p></div><dl class="paramcmts block"><dt class="param">s</dt><dd class="cmt"><p>una solución</p></dd><dt class="param">percentage</dt><dd class="cmt"><p>el porcentaje de soluciones vecinas que se desea aceptar</p></dd><dt class="param">temp1</dt><dd class="cmt"><p>el primer valor de la temperatura entre la que se va a buscar</p></dd><dt class="param">temp2</dt><dd class="cmt"><p>el segundo valor de la temperatura entre la que se va a buscar</p></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
@@ -379,10 +379,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="Temperature#initTemp" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="initTemp(s:Solution,temp:Double,percentage:Double):Double"></a><a id="initTemp(Solution,Double,Double):Double"></a>
+    </li><li name="Temperature#initTemp" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="initTemp(s:Solution,percentage:Double):Double"></a><a id="initTemp(Solution,Double):Double"></a>
       <span class="permalink">
-      <a href="Temperature.html#initTemp(s:Solution,temp:Double,percentage:Double):Double" title="Permalink">
+      <a href="Temperature.html#initTemp(s:Solution,percentage:Double):Double" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -391,10 +391,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">initTemp</span><span class="params">(<span name="s">s: <a href="Solution.html" class="extype" name="Solution">Solution</a></span>, <span name="temp">temp: <span class="extype" name="scala.Double">Double</span></span>, <span name="percentage">percentage: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+        <span class="name">initTemp</span><span class="params">(<span name="s">s: <a href="Solution.html" class="extype" name="Solution">Solution</a></span>, <span name="percentage">percentage: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
       </span>
       
-      
+      <p class="shortcomment cmt">Encuentra una temperatura inicial para aumentar la probabilidad de que la
+heurística de aceptación por umbrales pueda desplazarse rápidamente por el
+espacio de búsqueda</p><div class="fullcomment"><div class="comment cmt"><p>Encuentra una temperatura inicial para aumentar la probabilidad de que la
+heurística de aceptación por umbrales pueda desplazarse rápidamente por el
+espacio de búsqueda</p></div><dl class="paramcmts block"><dt class="param">s</dt><dd class="cmt"><p>una solución</p></dd><dt class="param">percentage</dt><dd class="cmt"><p>el porcentaje de soluciones vecinas que se desea aceptar</p></dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
@@ -459,10 +463,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="Temperature#percentageOfAccepted" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="percentageOfAccepted(s:Solution,temp:Double):Double"></a><a id="percentageOfAccepted(Solution,Double):Double"></a>
+    </li><li name="Temperature#percentageOfAccepted" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="percentageOfAccepted(_s:Solution):Double"></a><a id="percentageOfAccepted(Solution):Double"></a>
       <span class="permalink">
-      <a href="Temperature.html#percentageOfAccepted(s:Solution,temp:Double):Double" title="Permalink">
+      <a href="Temperature.html#percentageOfAccepted(_s:Solution):Double" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -471,10 +475,10 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">percentageOfAccepted</span><span class="params">(<span name="s">s: <a href="Solution.html" class="extype" name="Solution">Solution</a></span>, <span name="temp">temp: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+        <span class="name">percentageOfAccepted</span><span class="params">(<span name="_s">_s: <a href="Solution.html" class="extype" name="Solution">Solution</a></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
       </span>
       
-      
+      <p class="shortcomment cmt">Devuelve el porcentaje de las soluciones aceptadas</p><div class="fullcomment"><div class="comment cmt"><p>Devuelve el porcentaje de las soluciones aceptadas</p></div><dl class="paramcmts block"><dt class="param">_s</dt><dd class="cmt"><p>una solución</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
