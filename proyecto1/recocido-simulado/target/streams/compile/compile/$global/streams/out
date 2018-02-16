@@ -1,4 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/main/scala/Main.scala:3:8: variable name in class City cannot be accessed in City[0m
-[0m[[0m[31merror[0m] [0m[0m  city.name[0m
-[0m[[0m[31merror[0m] [0m[0m       ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m

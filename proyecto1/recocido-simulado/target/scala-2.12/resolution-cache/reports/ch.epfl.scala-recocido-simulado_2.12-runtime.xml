@@ -7,15 +7,15 @@
 		revision="1.0"
 		conf="runtime"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
-		date="20180215221340"/>
+		date="20180215234338"/>
 	<dependencies>
 		<module organisation="org.xerial" name="sqlite-jdbc">
-			<revision name="3.21.0.1" status="release" pubdate="20171207141133" resolver="public" artresolver="public" homepage="" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="26">
+			<revision name="3.21.0.1" status="release" pubdate="20171207141133" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="26">
 				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="successful" details="" size="6364" time="328" location="/home/rgarcia/.ivy2/cache/org.xerial/sqlite-jdbc/ivy-3.21.0.1.xml" searched="true" original-local-location="/home/rgarcia/.ivy2/cache/org.xerial/sqlite-jdbc/ivy-3.21.0.1.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.21.0.1/sqlite-jdbc-3.21.0.1.pom"/>
+				<metadata-artifact status="no" details="" size="3281" time="0" location="/home/rgarcia/.ivy2/cache/org.xerial/sqlite-jdbc/ivy-3.21.0.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.21.0.1/sqlite-jdbc-3.21.0.1.pom"/>
 				<caller organisation="ch.epfl.scala" name="recocido-simulado_2.12" conf="compile, runtime" rev="3.21.0.1" rev-constraint-default="3.21.0.1" rev-constraint-dynamic="3.21.0.1" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="sqlite-jdbc" type="jar" ext="jar" status="successful" details="" size="6674432" time="6638" location="/home/rgarcia/.ivy2/cache/org.xerial/sqlite-jdbc/jars/sqlite-jdbc-3.21.0.1.jar">
+					<artifact name="sqlite-jdbc" type="jar" ext="jar" status="no" details="" size="6674432" time="0" location="/home/rgarcia/.ivy2/cache/org.xerial/sqlite-jdbc/jars/sqlite-jdbc-3.21.0.1.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.21.0.1/sqlite-jdbc-3.21.0.1.jar"/>
 					</artifact>
 				</artifacts>
