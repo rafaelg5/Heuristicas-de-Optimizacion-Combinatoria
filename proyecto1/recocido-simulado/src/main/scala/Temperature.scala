@@ -2,28 +2,30 @@ import scala.math.abs
 
 /**
 * @constructor crea una nueva temperatura inicial
-* @param ti el valor inicial
 * @param instanceSize el tamaño del ejemplar
 */
-class Temperature(ti: Double, instanceSize: Int){
+class Temperature(instanceSize: Int){
 
-  private val epsilonT = 0.0
-  private val epsilonP = 0.0
+  private val epsilonT = 0.01
+  private val epsilonP = 0.05
 
   /**
   * Devuelve el porcentaje de las soluciones aceptadas
   * @param _s una solución
   */
-  def percentageOfAccepted(_s: Solution) : Double = {
+  def percentageOfAccepted(_s: Solution, ti: Double) : Double = {
     var counter = 0
     var s = _s
+
     for(i <- 0 until instanceSize){
+
       val newSolution = s.neighbor()
       if(newSolution.f() <= s.f() + ti){
         counter += 1
         s = newSolution
       }
     }
+
     return counter / instanceSize
   }
 
@@ -39,7 +41,7 @@ class Temperature(ti: Double, instanceSize: Int){
     val middleTemp = (temp1 + temp2) / 2
     if(temp2 - temp1 < epsilonT) { return middleTemp }
 
-    val newPercentage = percentageOfAccepted(s)
+    val newPercentage = percentageOfAccepted(s, middleTemp)
     if(abs(percentage - newPercentage) < epsilonP) { return middleTemp }
 
     if(newPercentage > percentage) {
@@ -54,11 +56,40 @@ class Temperature(ti: Double, instanceSize: Int){
   * heurística de aceptación por umbrales pueda desplazarse rápidamente por el
   * espacio de búsqueda
   * @param s una solución
+  * @param ti la temperatura inicial ("aleatoria")
   * @param percentage el porcentaje de soluciones vecinas que se desea aceptar
   */
-  def initTemp(s: Solution, percentage: Double) : Double = {
+  def initTemp(s: Solution, _ti: Double, percentage: Double) : Double = {
 
-    return 0.0
+    var ti = _ti
+    var newPercentage = percentageOfAccepted(s, ti)
+
+    if(abs(percentage - newPercentage) <= epsilonP){ return ti }
+
+    var temp1 : Double = 0.0
+    var temp2 : Double = 0.0
+
+    if(newPercentage < percentage) {
+
+      while(newPercentage < percentage) {
+        ti = 2 * ti
+        newPercentage = percentageOfAccepted(s, ti)
+      }
+
+      temp1 = ti / 2
+      temp2 = ti
+    } else {
+
+      while(newPercentage > percentage) {
+        ti = ti / 2
+        newPercentage = percentageOfAccepted(s, ti)
+      }
+
+      temp1 = ti
+      temp2 = 2 * ti
+    }
+
+    return binarySearch(s, percentage, temp1, temp2)
   }
 
 }

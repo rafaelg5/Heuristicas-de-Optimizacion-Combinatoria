@@ -7,7 +7,7 @@
 		revision="1.0"
 		conf="compile-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
-		date="20180216010048"/>
+		date="20180219011646"/>
 	<dependencies>
 		<module organisation="org.xerial" name="sqlite-jdbc">
 			<revision name="3.21.0.1" status="release" pubdate="20171207141133" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="26">

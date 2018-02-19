@@ -29,7 +29,7 @@ object DBConnection {
   private def getConn():Connection = {
     try {
       Class.forName("org.sqlite.JDBC")
-      conn = DriverManager.getConnection("jdbc:sqlite:./src/database/database.db")
+      conn = DriverManager.getConnection("jdbc:sqlite:./src/etc/database.db")
       conn.setAutoCommit(false)
     } catch {
       case ex: ClassNotFoundException => {
