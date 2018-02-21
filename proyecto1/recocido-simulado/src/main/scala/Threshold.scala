@@ -1,30 +1,36 @@
 
-class Threshold(batchSize: Int) {
+class Threshold(_batchSize: Int, initSolution: Solution) {
 
-  val epsilon = 0.03
+  private val epsilon = 0.03
+  private var minSolution = initSolution
+  private val batchSize = _batchSize
+
+  // Cómo sabemos qué solución es mejor a otra
+  // solución mínima
 
   /**
   * Cálcula el promedio de soluciones aceptadas y la última solución dado un
   * número fijo de soluciones aceptadas llamado lote.
   * @param temp la temperatura inicial
   * @param s una solución
+  * @return una tupla que contiene el promedio de soluciones y la última solución
   */
-  def computeBatch(temp: Double, _s: Solution): (Double, Solution) = {
+  private def computeBatch(temp: Double, s: Solution): (Double, Solution) = {
 
     var i = 0
     var r = 0.0
-    var s = _s
+    var solution = s
 
     while (i < batchSize){
-      var newSolution = s.neighbor()
-      if(newSolution.f() <= s.f() + temp){
-        s = newSolution
+      var newSolution = solution.neighbor
+      if(newSolution.costFunction <= solution.costFunction + temp){
+        solution = newSolution
         i += 1
-        r += newSolution.f()
+        r += newSolution.costFunction
       }
     }
 
-    return (r / batchSize, s)
+    return (r / batchSize, solution)
   }
 
   /**
@@ -32,11 +38,10 @@ class Threshold(batchSize: Int) {
   * @param temp la temperatura inicial
   * @param s una solución
   */
-  def acceptByThresholds(_temp: Double, _s: Solution): Unit = {
+  def acceptByThresholds(_temp: Double): Unit = {
 
     var avg = 0.0
     val coolingFactor = 0.5
-    var s = _s
     var temp = _temp
 
     while(temp > epsilon) {
@@ -44,11 +49,11 @@ class Threshold(batchSize: Int) {
 
       do {
         tmpAvg = avg
-        var result = computeBatch(temp, s)
+        var result = computeBatch(temp, minSolution)
         avg = result._1
-        s = result._2
+        minSolution = result._2
       } while(avg <= tmpAvg)
-      
+
       temp = coolingFactor * temp
     }
   }

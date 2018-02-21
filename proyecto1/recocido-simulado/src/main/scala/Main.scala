@@ -2,6 +2,7 @@ object Main extends App {
 
   val src = scala.io.Source.fromFile("src/etc/init_config")
   val lines = src.getLines.toArray
+  src.close
 
   val initTemp = lines(0).substring(lines(0).indexOf('=') + 1).toDouble
   val batchSize = lines(1).substring(lines(1).indexOf('=') + 1).toInt
@@ -17,9 +18,9 @@ object Main extends App {
   var solution = new Solution(initSolution.toArray, rng)
 
   val t = new Temperature(instance1.length)
-  var realInitTemp = t.initTemp(solution, initTemp, percentage)
+  //var realInitTemp = t.initTemp(solution, initTemp, percentage)
 
-  new Threshold(batchSize).acceptByThresholds(realInitTemp, solution)
+  //new Threshold(batchSize, solution).acceptByThresholds(realInitTemp, solution)
 
-  src.close
+
 }

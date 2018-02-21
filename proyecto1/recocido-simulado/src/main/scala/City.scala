@@ -7,9 +7,9 @@ import java.sql._;
 class City(_id: Int){
 
   val dbConn = DBConnection
-  val conn: Connection = dbConn.open()
+  val conn = dbConn.open()
   val query: String = "SELECT name, country, population, latitude, longitude FROM cities WHERE id =" + _id;
-  val rs: ResultSet = conn.createStatement().executeQuery(query);
+  val rs = conn.createStatement().executeQuery(query);
 
   private var _name = rs.getString(1)
   private var _country = rs.getString(2)

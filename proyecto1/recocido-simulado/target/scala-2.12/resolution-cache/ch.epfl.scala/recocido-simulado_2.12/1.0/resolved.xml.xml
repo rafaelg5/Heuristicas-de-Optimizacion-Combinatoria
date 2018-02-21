@@ -4,7 +4,7 @@
 		module="recocido-simulado_2.12"
 		revision="1.0"
 		status="integration"
-		publication="20180219011646"
+		publication="20180220193028"
 	>
 		<description>
 		recocido-simulado
@@ -35,9 +35,6 @@
 		<dependency org="org.typelevel" name="cats_2.12" rev="0.9.0" conf="compile->default(compile)"/>
 		<dependency org="org.scalactic" name="scalactic_2.12" rev="3.0.4" conf="compile->default(compile)"/>
 		<dependency org="org.scalatest" name="scalatest_2.12" rev="3.0.4" conf="test->default(compile)"/>
-		<dependency org="com.typesafe.slick" name="slick_2.12" rev="3.2.1" conf="compile->default(compile)"/>
-		<dependency org="org.slf4j" name="slf4j-nop" rev="1.6.4" conf="compile->default(compile)"/>
-		<dependency org="com.typesafe.slick" name="slick-hikaricp_2.12" rev="3.2.1" conf="compile->default(compile)"/>
 		<dependency org="org.xerial" name="sqlite-jdbc" rev="3.21.0.1" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

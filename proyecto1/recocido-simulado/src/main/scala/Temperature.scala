@@ -12,15 +12,15 @@ class Temperature(instanceSize: Int){
   /**
   * Devuelve el porcentaje de las soluciones aceptadas
   * @param _s una solución
+  * @return el porcentaje
   */
-  def percentageOfAccepted(_s: Solution, ti: Double) : Double = {
+  private def percentageOfAccepted(_s: Solution, ti: Double) : Double = {
     var counter = 0
     var s = _s
 
     for(i <- 0 until instanceSize){
-
-      val newSolution = s.neighbor()
-      if(newSolution.f() <= s.f() + ti){
+      val newSolution = s.neighbor
+      if(newSolution.costFunction <= s.costFunction + ti){
         counter += 1
         s = newSolution
       }
@@ -35,8 +35,9 @@ class Temperature(instanceSize: Int){
   * @param percentage el porcentaje de soluciones vecinas que se desea aceptar
   * @param temp1 el primer valor de la temperatura entre la que se va a buscar
   * @param temp2 el segundo valor de la temperatura entre la que se va a buscar
+  * @return el resultado de la búsqueda
   */
-  def binarySearch(s: Solution, percentage: Double, temp1: Double, temp2: Double) : Double = {
+  private def binarySearch(s: Solution, percentage: Double, temp1: Double, temp2: Double) : Double = {
 
     val middleTemp = (temp1 + temp2) / 2
     if(temp2 - temp1 < epsilonT) { return middleTemp }
@@ -58,6 +59,7 @@ class Temperature(instanceSize: Int){
   * @param s una solución
   * @param ti la temperatura inicial ("aleatoria")
   * @param percentage el porcentaje de soluciones vecinas que se desea aceptar
+  * @return la temperatura inicial
   */
   def initTemp(s: Solution, _ti: Double, percentage: Double) : Double = {
 
