@@ -105,3 +105,17 @@ test
 run
 test
 compile
+test
+compile
+test
+run
+test
+exit
+test
+compile
+reset
+compile
+clean
+cleanFiles
+doc
+last

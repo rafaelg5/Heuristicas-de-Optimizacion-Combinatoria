@@ -166,9 +166,9 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="Solution#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(solution:Array[Int],_rng:scala.util.Random):Solution"></a><a id="&lt;init&gt;:Solution"></a>
+      <a id="&lt;init&gt;(solution:Array[Int]):Solution"></a><a id="&lt;init&gt;:Solution"></a>
       <span class="permalink">
-      <a href="Solution.html#&lt;init&gt;(solution:Array[Int],_rng:scala.util.Random):Solution" title="Permalink">
+      <a href="Solution.html#&lt;init&gt;(solution:Array[Int]):Solution" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -177,7 +177,7 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Solution</span><span class="params">(<span name="solution">solution: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="_rng">_rng: <span class="extype" name="scala.util.Random">Random</span></span>)</span>
+        <span class="name">Solution</span><span class="params">(<span name="solution">solution: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span>
       </span>
       
       <p class="shortcomment cmt">crea una nueva solución</p><div class="fullcomment"><div class="comment cmt"><p>crea una nueva solución</p></div><dl class="paramcmts block"><dt class="param">solution</dt><dd class="cmt"><p>un arreglo de enteros que representa la solución</p></dd></dl></div>
@@ -293,6 +293,22 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="Solution#costFunction" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="costFunction():Double"></a>
+      <span class="permalink">
+      <a href="Solution.html#costFunction():Double" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">costFunction</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Calcula la función de costo f: S --&gt; R+ para la solución</p><div class="fullcomment"><div class="comment cmt"><p>Calcula la función de costo f: S --&gt; R+ para la solución</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>la solución evaluada en la función de costo</p></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -325,22 +341,6 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="Solution#f" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="f():Double"></a>
-      <span class="permalink">
-      <a href="Solution.html#f():Double" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">f</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
@@ -427,10 +427,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="Solution#neighbor" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="neighbor():Solution"></a>
+    </li><li name="Solution#neighbor" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="neighbor:Solution"></a>
       <span class="permalink">
-      <a href="Solution.html#neighbor():Solution" title="Permalink">
+      <a href="Solution.html#neighbor:Solution" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -439,10 +439,11 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">neighbor</span><span class="params">()</span><span class="result">: <a href="" class="extype" name="Solution">Solution</a></span>
+        <span class="name">neighbor</span><span class="result">: <a href="" class="extype" name="Solution">Solution</a></span>
       </span>
       
-      
+      <p class="shortcomment cmt">Obtiene una solución vecina de manera aleatoria.</p><div class="fullcomment"><div class="comment cmt"><p>Obtiene una solución vecina de manera aleatoria. La solución vecina solo
+cambia en una arista de la solución.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>la solución vecina</p></dd></dl></div>
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">

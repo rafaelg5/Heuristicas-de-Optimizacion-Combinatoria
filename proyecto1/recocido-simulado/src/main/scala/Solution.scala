@@ -1,12 +1,12 @@
 /**
 * @constructor crea una nueva solución
 * @param solution un arreglo de enteros que representa la solución
-* @param _rng un generador de números aleatorios
 */
-class Solution(solution: Array[Int], rng: scala.util.Random) {
+class Solution(solution: Array[Int]) {
 
   private val _cities = solution
-  private val _rng = rng
+  private val _rng = scala.util.Random
+  _rng.setSeed(Parameters.seed)
   private var distanceSum: Double = _
 
   /*
@@ -17,7 +17,7 @@ class Solution(solution: Array[Int], rng: scala.util.Random) {
 
     for(i <- 1 until _cities.length) {
       val e = new Edge(_cities(i - 1), _cities(i))
-      if(e.exists){
+      if(e.exists) {
         buf += e
         distanceSum += e.distance
       }
@@ -41,7 +41,7 @@ class Solution(solution: Array[Int], rng: scala.util.Random) {
     var neighborCities = _cities.clone
     swap(num, num2, neighborCities)
 
-    return new Solution(neighborCities, _rng)
+    return new Solution(neighborCities)
   }
 
   /*
@@ -71,7 +71,7 @@ class Solution(solution: Array[Int], rng: scala.util.Random) {
   * @return la solución evaluada en la función de costo
   */
   def costFunction(): Double = {
-    val permutation = rng.shuffle(_cities.toSeq).toArray
+    val permutation = _rng.shuffle(_cities.toSeq).toArray
     var total = 0.0
 
     for(i <- 1 until permutation.length) {
