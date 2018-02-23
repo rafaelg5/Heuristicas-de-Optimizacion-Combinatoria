@@ -10,5 +10,9 @@ object Parameters {
   var seed = lines(3).substring(lines(3).indexOf('=') + 1).toInt
   var instance1 = lines(4).substring(lines(4).indexOf('=') + 1).split(',').map(_.toInt)
   var instance2 = lines(5).substring(lines(5).indexOf('=') + 1).split(',').map(_.toInt)
+  var epsilon = lines(6).substring(lines(6).indexOf('=') + 1).toDouble
+  var epsilonT = lines(7).substring(lines(7).indexOf('=') + 1).toDouble
+  var epsilonP = lines(8).substring(lines(8).indexOf('=') + 1).toDouble
+  var coolingFactor = lines(9).substring(lines(9).indexOf('=') + 1).toDouble
 
 }

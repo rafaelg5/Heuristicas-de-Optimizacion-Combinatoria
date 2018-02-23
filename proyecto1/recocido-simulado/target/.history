@@ -119,3 +119,13 @@ clean
 cleanFiles
 doc
 last
+run
+compile
+run
+compile
+test
+clean
+cleanFile
+cleanFiles
+compile
+doc

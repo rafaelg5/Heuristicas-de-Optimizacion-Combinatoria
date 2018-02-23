@@ -4,7 +4,7 @@ import java.sql._;
 * @constructor crea una nueva ciudad.
 * @param _id el identificador en la base de datos de la ciudad
 */
-class City(_id: Int){
+class City(_id: Int) {
 
   val dbConn = DBConnection
   val conn = dbConn.open()

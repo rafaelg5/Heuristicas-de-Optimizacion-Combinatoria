@@ -6,8 +6,8 @@ import scala.math.abs
 */
 class Temperature(instanceSize: Int){
 
-  private val epsilonT = 0.01
-  private val epsilonP = 0.05
+  private val epsilonT = Parameters.epsilonT
+  private val epsilonP = Parameters.epsilonP
 
   /**
   * Devuelve el porcentaje de las soluciones aceptadas
@@ -15,7 +15,8 @@ class Temperature(instanceSize: Int){
   * @return el porcentaje
   */
   private def percentageOfAccepted(_s: Solution, ti: Double) : Double = {
-    var counter = 0
+
+    var counter = 0.0
     var s = _s
 
     for(i <- 0 until instanceSize){
@@ -40,6 +41,7 @@ class Temperature(instanceSize: Int){
   private def binarySearch(s: Solution, percentage: Double, temp1: Double, temp2: Double) : Double = {
 
     val middleTemp = (temp1 + temp2) / 2
+
     if(temp2 - temp1 < epsilonT) { return middleTemp }
 
     val newPercentage = percentageOfAccepted(s, middleTemp)
@@ -64,7 +66,7 @@ class Temperature(instanceSize: Int){
   def initTemp(s: Solution, _ti: Double, percentage: Double) : Double = {
 
     var ti = _ti
-    var newPercentage = percentageOfAccepted(s, ti)
+    var newPercentage = percentageOfAccepted(s, ti)    
 
     if(abs(percentage - newPercentage) <= epsilonP){ return ti }
 

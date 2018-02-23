@@ -7,8 +7,14 @@ object Main extends App {
   var solution = new Solution(initSolution.toArray)
 
   val t = new Temperature(Parameters.instance1.length)
-  //var realInitTemp = t.initTemp(solution, Parameters.initTemp, Parameters.percentage)
+  var realInitTemp = t.initTemp(solution, Parameters.initTemp, Parameters.percentage)
 
-  //new Threshold(batchSize, solution).acceptByThresholds(realInitTemp, solution)
+  val sa = new SimulatedAnnealing(solution)
+  sa.acceptByThresholds(realInitTemp)
+  /*var factSol =  th.minSolution
+
+  for(city <- factSol.cities) {
+    println(city)
+  }*/
 
 }

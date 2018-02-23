@@ -6,13 +6,9 @@ class Solution(solution: Array[Int]) {
 
   private val _cities = solution
   private val _rng = scala.util.Random
-  _rng.setSeed(Parameters.seed)
   private var distanceSum: Double = _
 
-  /*
-  * Devuelve un arreglo con las aristas que realmente están conectadas
-  */
-  private def connectedPairs = {
+  private val connectedPairs = {
     val buf = scala.collection.mutable.ArrayBuffer.empty[Edge]
 
     for(i <- 1 until _cities.length) {
@@ -47,15 +43,29 @@ class Solution(solution: Array[Int]) {
   /*
   * Devuelve el promedio de pesos de los pares conectados
   */
-  private def weightAvg = { distanceSum / connectedPairs.length }
+
+  // si no hay pares? |Es| = 0?
+  private def weightAvg = {
+    if (connectedPairs.length == 0) 0 else distanceSum / connectedPairs.length
+  }
 
   /*
-  *
+  * Devuelve la distancia máxima que existe en la solución
+  */
+  private def maxDistance = {
+    var max = 0.0
+    for(connection <- connectedPairs) {
+      if(connection.distance > max) max = connection.distance
+    }
+    max
+  }
+
+  /*
+  * Devuelve un valor de castigo para definir la función de peso aumentada
   */
   private def penalty = {
     var factor = 3.0
-    // factor * max{S}???
-    factor
+    factor * maxDistance
   }
 
   /*
@@ -71,11 +81,12 @@ class Solution(solution: Array[Int]) {
   * @return la solución evaluada en la función de costo
   */
   def costFunction(): Double = {
-    val permutation = _rng.shuffle(_cities.toSeq).toArray
+    // ¿permutación? f siempre diferente
+    //val permutation = _rng.shuffle(_cities.toSeq).toArray
     var total = 0.0
 
-    for(i <- 1 until permutation.length) {
-      total += increasedWeightF(permutation(i - 1), permutation(i))
+    for(i <- 1 until _cities.length) {
+      total += increasedWeightF(_cities(i - 1), _cities(i))
     }
     // weightAvg (|S| - 1) ???
     total / weightAvg
@@ -85,7 +96,6 @@ class Solution(solution: Array[Int]) {
   * Intercambia dos elementos de un arreglo in-place
   */
   private def swap(i: Int, j: Int, arr: Array[Int]): Unit = {
-
     val element = arr(i)
     arr(i) = arr(j)
     arr(j) = element

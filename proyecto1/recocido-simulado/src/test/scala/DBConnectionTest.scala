@@ -11,7 +11,6 @@ class DBConnectionTest extends FunSuite {
     val conn = DBConnection.open()
     try {
       assert(!conn.isClosed())
-      assert(DBConnection.open() === conn)
       DBConnection.close()
       assert(conn.isClosed())
     } catch {
@@ -28,7 +27,6 @@ class DBConnectionTest extends FunSuite {
     val conn = DBConnection.open()
     try {
       assert(!conn.isClosed());
-      assert(DBConnection.open() === conn);
       DBConnection.close();
       assert(conn.isClosed());
     } catch {

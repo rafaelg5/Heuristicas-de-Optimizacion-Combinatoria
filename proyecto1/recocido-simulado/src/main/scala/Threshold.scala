@@ -1,11 +1,14 @@
 
-class Threshold(_batchSize: Int, initSolution: Solution) {
+class SimulatedAnnealing(initSolution: Solution) {
 
-  private val epsilon = 0.03
-  private var minSolution = initSolution
-  private val batchSize = _batchSize
+  private val epsilon = Parameters.epsilon
+  private val coolingFactor = Parameters.coolingFactor
+  private var _minSolution = initSolution
+  private val batchSize = Parameters.batchSize
 
-  // Cómo sabemos qué solución es mejor a otra
+  def minSolution = _minSolution
+
+  // Cómo sabemos qué solución es mejor a otra? costFunction?
   // solución mínima
 
   /**
@@ -21,13 +24,19 @@ class Threshold(_batchSize: Int, initSolution: Solution) {
     var r = 0.0
     var solution = s
 
-    while (i < batchSize){
+    var exit = 0
+    var squaredBatchSize = math.pow(batchSize, 2)
+
+    while (i < batchSize && exit < squaredBatchSize){
+
       var newSolution = solution.neighbor
+
       if(newSolution.costFunction <= solution.costFunction + temp){
         solution = newSolution
         i += 1
         r += newSolution.costFunction
       }
+      exit += 1
     }
 
     return (r / batchSize, solution)
@@ -41,19 +50,20 @@ class Threshold(_batchSize: Int, initSolution: Solution) {
   def acceptByThresholds(_temp: Double): Unit = {
 
     var avg = 0.0
-    val coolingFactor = 0.5
     var temp = _temp
 
     while(temp > epsilon) {
-      var tmpAvg = 0.0
 
-      do {
-        tmpAvg = avg
-        var result = computeBatch(temp, minSolution)
+      print(f"$temp%f%n%n")
+      var auxAvg = Double.MaxValue
+
+      while(avg <= auxAvg) {
+        println(f"p = $avg%f%nq = $auxAvg%f%n")
+        auxAvg = avg
+        var result = computeBatch(temp, _minSolution)
         avg = result._1
-        minSolution = result._2
-      } while(avg <= tmpAvg)
-
+        _minSolution = result._2
+      }
       temp = coolingFactor * temp
     }
   }
