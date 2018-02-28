@@ -8,9 +8,6 @@ class SimulatedAnnealing(initSolution: Solution) {
 
   def minSolution = _minSolution
 
-  // Cómo sabemos qué solución es mejor a otra? costFunction?
-  // solución mínima
-
   /**
   * Cálcula el promedio de soluciones aceptadas y la última solución dado un
   * número fijo de soluciones aceptadas llamado lote.
@@ -31,10 +28,10 @@ class SimulatedAnnealing(initSolution: Solution) {
 
       var newSolution = solution.neighbor
 
-      if(newSolution.costFunction <= solution.costFunction + temp){
+      if(newSolution.cost <= solution.cost + temp){
         solution = newSolution
         i += 1
-        r += newSolution.costFunction
+        r += newSolution.cost
       }
       exit += 1
     }
@@ -51,18 +48,18 @@ class SimulatedAnnealing(initSolution: Solution) {
 
     var avg = 0.0
     var temp = _temp
+    var newSolution = _minSolution
 
     while(temp > epsilon) {
 
-      print(f"$temp%f%n%n")
       var auxAvg = Double.MaxValue
 
       while(avg <= auxAvg) {
-        println(f"p = $avg%f%nq = $auxAvg%f%n")
         auxAvg = avg
-        var result = computeBatch(temp, _minSolution)
+        var result = computeBatch(temp, newSolution)
         avg = result._1
-        _minSolution = result._2
+        newSolution = result._2
+        if(newSolution.cost < _minSolution.cost) _minSolution = newSolution
       }
       temp = coolingFactor * temp
     }

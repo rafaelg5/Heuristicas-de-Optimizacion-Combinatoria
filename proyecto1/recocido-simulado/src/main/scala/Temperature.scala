@@ -21,7 +21,7 @@ class Temperature(instanceSize: Int){
 
     for(i <- 0 until instanceSize){
       val newSolution = s.neighbor
-      if(newSolution.costFunction <= s.costFunction + ti){
+      if(newSolution.cost <= s.cost + ti){
         counter += 1
         s = newSolution
       }
@@ -66,7 +66,7 @@ class Temperature(instanceSize: Int){
   def initTemp(s: Solution, _ti: Double, percentage: Double) : Double = {
 
     var ti = _ti
-    var newPercentage = percentageOfAccepted(s, ti)    
+    var newPercentage = percentageOfAccepted(s, ti)
 
     if(abs(percentage - newPercentage) <= epsilonP){ return ti }
 
@@ -95,5 +95,4 @@ class Temperature(instanceSize: Int){
 
     return binarySearch(s, percentage, temp1, temp2)
   }
-
 }

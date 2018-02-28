@@ -2,14 +2,15 @@ import java.sql._;
 
 /**
 * @constructor crea una nueva arista (conexión) entre dos ciudades.
-* @param id_city_1 el identificador de la primera ciudad
-* @param id_city_2 el identificador de la segunda ciudad
+* @param id1 el identificador de la primera ciudad
+* @param id2 el identificador de la segunda ciudad
 */
-class Edge(_id_city_1: Int, _id_city_2: Int){
+class Edge(id1: Int, id2: Int){
 
-  val dbConn = DBConnection
-  val conn = dbConn.open()
-  val query: String = "SELECT id_city_1, id_city_2, distance FROM connections WHERE id_city_1 =" + _id_city_1 + " AND id_city_2 = " + _id_city_2;
+  val conn = DBConnection.open()
+  val query = f"""SELECT id_city_1, id_city_2, distance FROM
+  |connections WHERE (id_city_1 = $id1%d AND id_city_2 = $id2%d) OR
+  |(id_city_1 = $id2%d AND id_city_2 = $id1%d);""".stripMargin.replaceAll("\n", " ")
   val rs = conn.createStatement().executeQuery(query);
 
   private var _exists = false
@@ -20,12 +21,12 @@ class Edge(_id_city_1: Int, _id_city_2: Int){
     _exists = true
   }
 
-  dbConn.close()
+  DBConnection.close()
 
   // Getters
-  def id_city_1 = _id_city_1
-  def id_city_2 = _id_city_2
+  def id_city_1 = id1
+  def id_city_2 = id2
   def distance = _distance
   def exists = _exists
-  
+
 }

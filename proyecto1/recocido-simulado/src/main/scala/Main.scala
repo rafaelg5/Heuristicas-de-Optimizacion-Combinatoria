@@ -1,20 +1,25 @@
 object Main extends App {
 
   val rng = scala.util.Random
-  rng.setSeed(Parameters.seed)
+  var lastSol: Solution = _
+  for(i <- 1 to 10) {
 
-  val initSolution = rng.shuffle(Parameters.instance1.toSeq)
-  var solution = new Solution(initSolution.toArray)
+    val thread = new Thread {
+      rng.setSeed(i)
 
-  val t = new Temperature(Parameters.instance1.length)
-  var realInitTemp = t.initTemp(solution, Parameters.initTemp, Parameters.percentage)
+      val initSolution = rng.shuffle(Parameters.instance1.toSeq)
+      var solution = new Solution(initSolution.toArray)
 
-  val sa = new SimulatedAnnealing(solution)
-  sa.acceptByThresholds(realInitTemp)
-  /*var factSol =  th.minSolution
+      val t = new Temperature(Parameters.instance1.length)
+      var realInitTemp = t.initTemp(solution, Parameters.initTemp, Parameters.percentage)
 
-  for(city <- factSol.cities) {
-    println(city)
-  }*/
+      val sa = new SimulatedAnnealing(solution)
+      sa.acceptByThresholds(realInitTemp)
+      lastSol = sa.minSolution
 
+      for(city <- lastSol.cities) { print(city + " ") }
+    }
+    thread.start
+    Thread.sleep(50)
+  }
 }

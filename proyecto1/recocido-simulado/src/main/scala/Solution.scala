@@ -8,18 +8,25 @@ class Solution(solution: Array[Int]) {
   private val _rng = scala.util.Random
   private var distanceSum: Double = _
 
-  private val connectedPairs = {
-    val buf = scala.collection.mutable.ArrayBuffer.empty[Edge]
+  val conn = DBConnection.open()
 
-    for(i <- 1 until _cities.length) {
-      val e = new Edge(_cities(i - 1), _cities(i))
-      if(e.exists) {
-        buf += e
-        distanceSum += e.distance
-      }
-    }
-    buf.toArray
+  /* Distancia máxima en la solución */
+  private val maxDistance = {
+    val str = solution.mkString(",")
+    val query = f"select max(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);";
+    val rs = conn.createStatement().executeQuery(query)
+    rs.getDouble(1)
   }
+
+  /* Promedio de peso de la solución */
+  private val weightAvg = {
+    val str = solution.mkString(",")
+    val query = f"select avg(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);";
+    val rs = conn.createStatement().executeQuery(query)
+    rs.getDouble(1)
+  }
+
+  DBConnection.close
 
   // Getters
   def cities = _cities
@@ -41,30 +48,10 @@ class Solution(solution: Array[Int]) {
   }
 
   /*
-  * Devuelve el promedio de pesos de los pares conectados
-  */
-
-  // si no hay pares? |Es| = 0?
-  private def weightAvg = {
-    if (connectedPairs.length == 0) 0 else distanceSum / connectedPairs.length
-  }
-
-  /*
-  * Devuelve la distancia máxima que existe en la solución
-  */
-  private def maxDistance = {
-    var max = 0.0
-    for(connection <- connectedPairs) {
-      if(connection.distance > max) max = connection.distance
-    }
-    max
-  }
-
-  /*
   * Devuelve un valor de castigo para definir la función de peso aumentada
   */
   private def penalty = {
-    var factor = 3.0
+    var factor = 2.0
     factor * maxDistance
   }
 
@@ -80,16 +67,14 @@ class Solution(solution: Array[Int]) {
   * Calcula la función de costo f: S --> R+ para la solución
   * @return la solución evaluada en la función de costo
   */
-  def costFunction(): Double = {
-    // ¿permutación? f siempre diferente
-    //val permutation = _rng.shuffle(_cities.toSeq).toArray
+  def cost(): Double = {
     var total = 0.0
 
     for(i <- 1 until _cities.length) {
       total += increasedWeightF(_cities(i - 1), _cities(i))
     }
-    // weightAvg (|S| - 1) ???
-    total / weightAvg
+
+    total / ( weightAvg * (_cities.length - 1))
   }
 
   /*
