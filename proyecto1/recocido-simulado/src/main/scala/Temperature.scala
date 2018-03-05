@@ -74,21 +74,17 @@ class Temperature(instanceSize: Int){
     var temp2 : Double = 0.0
 
     if(newPercentage < percentage) {
-
       while(newPercentage < percentage) {
         ti = 2 * ti
         newPercentage = percentageOfAccepted(s, ti)
       }
-
       temp1 = ti / 2
       temp2 = ti
     } else {
-
       while(newPercentage > percentage) {
         ti = ti / 2
         newPercentage = percentageOfAccepted(s, ti)
       }
-
       temp1 = ti
       temp2 = 2 * ti
     }

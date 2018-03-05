@@ -1,35 +1,56 @@
+import scala.util.Random
+
 /**
 * @constructor crea una nueva solución
 * @param solution un arreglo de enteros que representa la solución
 */
-class Solution(solution: Array[Int]) {
+class Solution(solution: Array[Int], maxD: Double, weightA: Double, rng: Random) {
+
+  def this(solution: Array[Int], rng: Random) = this(solution, -1, -1, rng: Random)
 
   private val _cities = solution
-  private val _rng = scala.util.Random
-  private var distanceSum: Double = _
+  private val _rng = rng
+  private var maxDistance = maxD
+  private var weightAvg = weightA
 
-  val conn = DBConnection.open()
+  /* Lista de aristas de la solución */
+  private var edgeList = {
 
-  /* Distancia máxima en la solución */
-  private val maxDistance = {
+    var l = new Array[Edge](_cities.length - 1)
+    for(i <- 1 until _cities.length) {
+      l(i - 1) = new Edge(_cities(i - 1), _cities(i))
+    }
+    l
+  }
+
+  if(maxDistance == -1) { maxDistance = getMaxDistance }
+  if(weightAvg == -1) { weightAvg = getWeightAvg }
+
+  /* Obtiene la distancia máxima en la solución */
+  private def getMaxDistance: Double = {
+    val conn = DBConnection.open()
     val str = solution.mkString(",")
     val query = f"select max(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);";
     val rs = conn.createStatement().executeQuery(query)
-    rs.getDouble(1)
+    val d = rs.getDouble(1)
+    DBConnection.close
+    return d
   }
 
-  /* Promedio de peso de la solución */
-  private val weightAvg = {
+  /* Obtiene el promedio de pesos de la solución */
+  private def getWeightAvg: Double = {
+    val conn = DBConnection.open()
     val str = solution.mkString(",")
     val query = f"select avg(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);";
     val rs = conn.createStatement().executeQuery(query)
-    rs.getDouble(1)
+    val w = rs.getDouble(1)
+    DBConnection.close
+    return w
   }
-
-  DBConnection.close
 
   // Getters
   def cities = _cities
+  def path = edgeList
 
   /**
   * Obtiene una solución vecina de manera aleatoria. La solución vecina solo
@@ -44,7 +65,7 @@ class Solution(solution: Array[Int]) {
     var neighborCities = _cities.clone
     swap(num, num2, neighborCities)
 
-    return new Solution(neighborCities)
+    new Solution(neighborCities, maxDistance, weightAvg, _rng)
   }
 
   /*
@@ -58,8 +79,7 @@ class Solution(solution: Array[Int]) {
   /*
   * Función de peso aumentada w'
   */
-  private def increasedWeightF(u: Int, v:Int): Double = {
-    val e = new Edge(u, v)
+  private def increasedWeight(e: Edge): Double = {
     if (e.exists) e.distance else penalty
   }
 
@@ -67,14 +87,21 @@ class Solution(solution: Array[Int]) {
   * Calcula la función de costo f: S --> R+ para la solución
   * @return la solución evaluada en la función de costo
   */
-  def cost(): Double = {
+  def cost: Double = {
     var total = 0.0
 
-    for(i <- 1 until _cities.length) {
-      total += increasedWeightF(_cities(i - 1), _cities(i))
-    }
+    for(e <- edgeList) { total += increasedWeight(e) }
 
     total / ( weightAvg * (_cities.length - 1))
+  }
+
+  /**
+  * Determina si la solución es factible o no
+  * @return true si es factible, false e.o.c
+  */
+  def isFeasible: Boolean = {
+    for(e <- edgeList) { if(!e.exists) return false }
+    return true
   }
 
   /*
@@ -84,5 +111,13 @@ class Solution(solution: Array[Int]) {
     val element = arr(i)
     arr(i) = arr(j)
     arr(j) = element
+  }
+
+  /**
+  * Representación en cadena de la solución
+  * @return la cadena
+  */
+  override def toString = {
+    _cities.mkString(", ")
   }
 }

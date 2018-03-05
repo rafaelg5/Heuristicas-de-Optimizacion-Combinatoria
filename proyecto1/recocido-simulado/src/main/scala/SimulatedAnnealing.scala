@@ -22,12 +22,10 @@ class SimulatedAnnealing(initSolution: Solution) {
     var solution = s
 
     var exit = 0
-    var squaredBatchSize = math.pow(batchSize, 2)
 
-    while (i < batchSize && exit < squaredBatchSize){
+    while (i < batchSize && exit < 50000){
 
       var newSolution = solution.neighbor
-
       if(newSolution.cost <= solution.cost + temp){
         solution = newSolution
         i += 1
