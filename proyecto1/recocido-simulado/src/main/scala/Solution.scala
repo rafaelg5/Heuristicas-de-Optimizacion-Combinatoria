@@ -16,7 +16,7 @@ class Solution(solution: Array[Int], maxD: Double, weightA: Double, rng: Random)
   /* Lista de aristas de la solución */
   private var edgeList = {
     var l = new Array[Edge](_cities.length - 1)
-    for(i <- 1 until _cities.length) {      
+    for(i <- 1 until _cities.length) {
       l(i - 1) = new Edge(_cities(i - 1), _cities(i))
     }
     l
@@ -58,13 +58,19 @@ class Solution(solution: Array[Int], maxD: Double, weightA: Double, rng: Random)
   */
   def neighbor: Solution = {
 
-    val num = _rng.nextInt(_cities.length)
-    val num2 = if (num + 1 == cities.length) num - 1 else if (num == 0) 1 else num + 1
+    var num = 0
+    var num2 = 0
+    do {
+      num = _rng.nextInt(_cities.length)
+      //num2 = if (num + 1 == cities.length) num - 1 else if (num == 0) 1 else num + 1
+      num2 = _rng.nextInt(_cities.length)
+    } while(num == num2)
 
-    var neighborCities = _cities.clone
-    swap(num, num2, neighborCities)
 
-    new Solution(neighborCities, maxDistance, weightAvg, _rng)
+    var neighborSolution = _cities.clone
+    swap(num, num2, neighborSolution)
+
+    new Solution(neighborSolution, maxDistance, weightAvg, _rng)
   }
 
   /*
