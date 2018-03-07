@@ -22,8 +22,10 @@ class SimulatedAnnealing(initSolution: Solution) {
     var solution = s
 
     var exit = 0
+    val m = (scala.math.log(batchSize) / scala.math.log(2)).toInt
 
-    while (i < batchSize && exit < 50000){
+    //val ti = System.currentTimeMillis()
+    while (i < batchSize && exit < m){
 
       var newSolution = solution.neighbor
       if(newSolution.cost <= solution.cost + temp){
@@ -33,6 +35,7 @@ class SimulatedAnnealing(initSolution: Solution) {
       }
       exit += 1
     }
+//    val tf = System.currentTimeMillis()
 
     return (r / batchSize, solution)
   }
@@ -43,6 +46,7 @@ class SimulatedAnnealing(initSolution: Solution) {
   * @param s una solución
   */
   def acceptByThresholds(_temp: Double): Unit = {
+
 
     var avg = 0.0
     var temp = _temp

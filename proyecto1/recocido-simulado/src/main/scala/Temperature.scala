@@ -3,31 +3,35 @@ import scala.math.abs
 /**
 * @constructor crea una nueva temperatura inicial
 * @param instanceSize el tamaño del ejemplar
+* @param temp la temperatura inicial
 */
-class Temperature(instanceSize: Int){
+class Temperature(temp: Double, solution: Solution){
 
   private val epsilonT = Parameters.epsilonT
   private val epsilonP = Parameters.epsilonP
+  private val value = temp
+  private val s = solution
 
   /**
   * Devuelve el porcentaje de las soluciones aceptadas
   * @param _s una solución
   * @return el porcentaje
   */
-  private def percentageOfAccepted(_s: Solution, ti: Double) : Double = {
+  private def percentageOfAccepted(_s: Solution, t: Double) : Double = {
 
     var counter = 0.0
-    var s = _s
+    var solution = s
 
-    for(i <- 0 until instanceSize){
-      val newSolution = s.neighbor
-      if(newSolution.cost <= s.cost + ti){
-        counter += 1
-        s = newSolution
+    for(i <- 0 until 100){
+
+      val newSolution = solution.neighbor
+
+      if(newSolution.cost <= solution.cost + t){
+        counter += 1.0
+        solution = newSolution
       }
     }
-
-    return counter / instanceSize
+    return counter / 100
   }
 
   /**
@@ -38,7 +42,7 @@ class Temperature(instanceSize: Int){
   * @param temp2 el segundo valor de la temperatura entre la que se va a buscar
   * @return el resultado de la búsqueda
   */
-  private def binarySearch(s: Solution, percentage: Double, temp1: Double, temp2: Double) : Double = {
+  private def binarySearch(percentage: Double, temp1: Double, temp2: Double) : Double = {
 
     val middleTemp = (temp1 + temp2) / 2
 
@@ -48,9 +52,9 @@ class Temperature(instanceSize: Int){
     if(abs(percentage - newPercentage) < epsilonP) { return middleTemp }
 
     if(newPercentage > percentage) {
-      return binarySearch(s, percentage, temp1, middleTemp)
+      return binarySearch(percentage, temp1, middleTemp)
     } else {
-      return binarySearch(s, percentage, middleTemp, temp2)
+      return binarySearch(percentage, middleTemp, temp2)
     }
   }
 
@@ -59,36 +63,36 @@ class Temperature(instanceSize: Int){
   * heurística de aceptación por umbrales pueda desplazarse rápidamente por el
   * espacio de búsqueda
   * @param s una solución
-  * @param ti la temperatura inicial ("aleatoria")
   * @param percentage el porcentaje de soluciones vecinas que se desea aceptar
   * @return la temperatura inicial
   */
-  def initTemp(s: Solution, _ti: Double, percentage: Double) : Double = {
+  def initTemp(percentage: Double) : Double = {
 
-    var ti = _ti
-    var newPercentage = percentageOfAccepted(s, ti)
+    var t = value
+    var newPercentage = percentageOfAccepted(s, t)
 
-    if(abs(percentage - newPercentage) <= epsilonP){ return ti }
+    if(abs(percentage - newPercentage) <= epsilonP){ return value }
 
-    var temp1 : Double = 0.0
-    var temp2 : Double = 0.0
+    var temp1 = 0.0
+    var temp2 = 0.0
 
     if(newPercentage < percentage) {
+
       while(newPercentage < percentage) {
-        ti = 2 * ti
-        newPercentage = percentageOfAccepted(s, ti)
+        t *= 2
+        newPercentage = percentageOfAccepted(s, t)
       }
-      temp1 = ti / 2
-      temp2 = ti
+
+      temp1 = t / 2
+      temp2 = t
     } else {
       while(newPercentage > percentage) {
-        ti = ti / 2
-        newPercentage = percentageOfAccepted(s, ti)
+        t /= 2
+        newPercentage = percentageOfAccepted(s, t)
       }
-      temp1 = ti
-      temp2 = 2 * ti
+      temp1 = t
+      temp2 = 2 * t
     }
-
-    return binarySearch(s, percentage, temp1, temp2)
+    return binarySearch(percentage, temp1, temp2)
   }
 }

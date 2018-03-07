@@ -15,9 +15,8 @@ class Solution(solution: Array[Int], maxD: Double, weightA: Double, rng: Random)
 
   /* Lista de aristas de la solución */
   private var edgeList = {
-
     var l = new Array[Edge](_cities.length - 1)
-    for(i <- 1 until _cities.length) {
+    for(i <- 1 until _cities.length) {      
       l(i - 1) = new Edge(_cities(i - 1), _cities(i))
     }
     l
