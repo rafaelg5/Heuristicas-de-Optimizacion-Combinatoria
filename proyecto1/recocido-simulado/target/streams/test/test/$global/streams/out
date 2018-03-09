@@ -1,9 +1,9 @@
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(TemperatureTest, org.scalatest.tools.Framework$$anon$1@161dde6f, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(SimulatedAnnealingTest, org.scalatest.tools.Framework$$anon$1@161dde6f, false, [SuiteSelector])[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(SolutionTest, org.scalatest.tools.Framework$$anon$1@161dde6f, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(TemperatureTest, org.scalatest.tools.Framework$$anon$1@29362905, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(SolutionTest, org.scalatest.tools.Framework$$anon$1@29362905, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(SimulatedAnnealingTest, org.scalatest.tools.Framework$$anon$1@29362905, false, [SuiteSelector])[0m
 [0m[[0m[0mdebug[0m] [0m[0mSummary for ScalaCheck not available.[0m
 [0m[[0m[0minfo[0m] [0m[0mScalaTest[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 1 second, 725 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 1 second, 520 milliseconds.[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 4[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 3, aborted 0[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 4, failed 0, canceled 0, ignored 0, pending 0[0m[0m

@@ -6,6 +6,6 @@ instance2=10,12,13,39,40,44,67,69,74,79,86,93,94,95,96,98,107,111,115,117,119,15
 epsilon=0.001
 epsilonT=0.001
 epsilonP=0.001
-coolingFactor=0.1
+coolingFactor=0.8
 N=100
 F=2

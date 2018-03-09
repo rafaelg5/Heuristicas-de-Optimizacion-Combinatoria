@@ -7,7 +7,7 @@ import scala.util.Random
 class Solution(solution: Array[Int], conns: Connections, rng: Random) {
 
   def this(solution: Array[Int], rng: Random) = this(solution, null, rng)
-
+  
   private val _cities = solution
   private val _rng = rng
   private val factor = Parameters.factor

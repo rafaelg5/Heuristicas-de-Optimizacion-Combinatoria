@@ -13,7 +13,7 @@ object Main extends App {
   val seed = rng.nextLong()
 
   val startTime = System.nanoTime
-  for(i <- seed to seed + 4) {
+  for(i <- seed to seed + 5000) {
 
     rng.setSeed(i)
 
@@ -30,7 +30,7 @@ object Main extends App {
     sa.acceptByThresholds(realInitTemp)
     val lastSolution = sa.minSolution
 
-    if(lastSolution.isFeasible) { writer.write(f"$i%d: $lastSolution%s\n") }
+    writer.write(f"$i%d: $lastSolution%s\n")
   }
   val endTime = System.nanoTime
   val duration = (endTime - startTime) / 1000000000.0

@@ -221,3 +221,6 @@ compile
 test
 compile
 test
+run
+test
+run

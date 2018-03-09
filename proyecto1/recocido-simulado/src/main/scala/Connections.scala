@@ -50,15 +50,29 @@ class Connections(cities: Array[Int]) {
   conn.commit
   conn.close
 
+  /* Distancia máxima entre las ciudades */
   def getMaxDistance = maxDistance
+  /* Peso promedio entre las ciudades */
   def getWeightAvg = weightAvg
 
+  /**
+  * Determina si existe una conexión entre dos ciudades
+  * @param city1 la primera ciudad
+  * @param city1 la segunda ciudad
+  * @return true si existe dicha conexión
+  */
   def exists(city1: Int, city2: Int): Boolean = {
     if((connMap contains (city1, city2)) || (connMap contains (city2, city1)))
       return true
     return false
   }
 
+  /**
+  * Devuelve la distancia entre dos ciudades conectadas
+  * @param city1 la primera ciudad
+  * @param city1 la segunda ciudad
+  * @return la distancia entre las ciudades o -1 si no están conectadas
+  */
   def getDistance(city1: Int, city2: Int): Double = {
 
     if(connMap contains (city1, city2))
