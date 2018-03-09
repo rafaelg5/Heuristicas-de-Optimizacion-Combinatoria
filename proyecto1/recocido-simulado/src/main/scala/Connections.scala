@@ -7,25 +7,38 @@ import java.sql.{Array=>SQLArray, _}
 */
 class Connections(cities: Array[Int]) {
 
-  private val conn = DBConnection.open
+  private var conn: Connection = null
+
+  try {
+    Class.forName("org.sqlite.JDBC")
+    conn = DriverManager.getConnection("jdbc:sqlite:./src/etc/database.db")
+    conn.setAutoCommit(false)
+  } catch {
+    case ex: ClassNotFoundException => {
+      println(ex.toString())
+    }
+    case ex: SQLException => {
+      println(ex.toString())
+    }
+  }
 
   private var maxDistance = {
     val str = cities.mkString(",")
-    val query = f"select max(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);";
+    val query = f"select max(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);"
     val rs = conn.createStatement.executeQuery(query)
     rs.getDouble(1)
   }
 
   private var weightAvg = {
     val str = cities.mkString(",")
-    val query = f"select avg(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);";
-    val rs = conn.createStatement.execute(query)
+    val query = f"select avg(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);"
+    val rs = conn.createStatement.executeQuery(query)
     rs.getDouble(1)
   }
 
   private val connMap = HashMap.empty[(Int, Int), Double]
 
-  val rs = conn.createStatement().execute("SELECT * FROM connections;")
+  val rs = conn.createStatement.executeQuery("SELECT * FROM connections;")
 
   while (rs.next()) {
     val city1 = rs.getInt(1)
@@ -34,7 +47,8 @@ class Connections(cities: Array[Int]) {
     connMap += ((city1, city2) -> distance)
   }
 
-  DBConnection.close
+  conn.commit
+  conn.close
 
   def getMaxDistance = maxDistance
   def getWeightAvg = weightAvg

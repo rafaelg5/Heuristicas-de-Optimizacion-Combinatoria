@@ -1,4 +1,16 @@
-[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/main/scala/Connections.scala:15:18: value open is not a member of java.sql.Connection[0m
-[0m[[0m[31merror[0m] [0m[0m    println(conn.open)[0m
-[0m[[0m[31merror[0m] [0m[0m                 ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/main/scala/Connections.scala:58:7: method exists has return statement; needs result type[0m
+[0m[[0m[31merror[0m] [0m[0m      return true[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/main/scala/Connections.scala:59:5: method exists has return statement; needs result type[0m
+[0m[[0m[31merror[0m] [0m[0m    return false[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/main/scala/Connections.scala:65:7: method getDistance has return statement; needs result type[0m
+[0m[[0m[31merror[0m] [0m[0m      return connMap((city1, city2))[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/main/scala/Connections.scala:68:7: method getDistance has return statement; needs result type[0m
+[0m[[0m[31merror[0m] [0m[0m      return connMap((city2, city1))[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/main/scala/Connections.scala:70:5: method getDistance has return statement; needs result type[0m
+[0m[[0m[31merror[0m] [0m[0m    return -1.0[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0m5 errors found[0m
