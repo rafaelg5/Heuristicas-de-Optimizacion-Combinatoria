@@ -4,52 +4,18 @@ import scala.util.Random
 * @constructor crea una nueva solución
 * @param solution un arreglo de enteros que representa la solución
 */
-class Solution(solution: Array[Int], maxD: Double, weightA: Double, rng: Random) {
+class Solution(solution: Array[Int], conns: Connections, rng: Random) {
 
-  def this(solution: Array[Int], rng: Random) = this(solution, -1, -1, rng: Random)
+  def this(solution: Array[Int], rng: Random) = this(solution, null, rng)
 
   private val _cities = solution
   private val _rng = rng
-  private var maxDistance = maxD
-  private var weightAvg = weightA
+  private val factor = Parameters.factor
+  private var connections = conns
 
-  /* Lista de aristas de la solución */
-  private var edgeList = {
-    var l = new Array[Edge](_cities.length - 1)
-    for(i <- 1 until _cities.length) {
-      l(i - 1) = new Edge(_cities(i - 1), _cities(i))
-    }
-    l
-  }
+  if(connections == null) { connections = new Connections(_cities) }
 
-  if(maxDistance == -1) { maxDistance = getMaxDistance }
-  if(weightAvg == -1) { weightAvg = getWeightAvg }
-
-  /* Obtiene la distancia máxima en la solución */
-  private def getMaxDistance: Double = {
-    val conn = DBConnection.open()
-    val str = solution.mkString(",")
-    val query = f"select max(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);";
-    val rs = conn.createStatement().executeQuery(query)
-    val d = rs.getDouble(1)
-    DBConnection.close
-    return d
-  }
-
-  /* Obtiene el promedio de pesos de la solución */
-  private def getWeightAvg: Double = {
-    val conn = DBConnection.open()
-    val str = solution.mkString(",")
-    val query = f"select avg(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);";
-    val rs = conn.createStatement().executeQuery(query)
-    val w = rs.getDouble(1)
-    DBConnection.close
-    return w
-  }
-
-  // Getters
   def cities = _cities
-  def path = edgeList
 
   /**
   * Obtiene una solución vecina de manera aleatoria. La solución vecina solo
@@ -62,30 +28,13 @@ class Solution(solution: Array[Int], maxD: Double, weightA: Double, rng: Random)
     var num2 = 0
     do {
       num = _rng.nextInt(_cities.length)
-      //num2 = if (num + 1 == cities.length) num - 1 else if (num == 0) 1 else num + 1
       num2 = _rng.nextInt(_cities.length)
     } while(num == num2)
-
 
     var neighborSolution = _cities.clone
     swap(num, num2, neighborSolution)
 
-    new Solution(neighborSolution, maxDistance, weightAvg, _rng)
-  }
-
-  /*
-  * Devuelve un valor de castigo para definir la función de peso aumentada
-  */
-  private def penalty = {
-    var factor = 2.0
-    factor * maxDistance
-  }
-
-  /*
-  * Función de peso aumentada w'
-  */
-  private def increasedWeight(e: Edge): Double = {
-    if (e.exists) e.distance else penalty
+    new Solution(neighborSolution, connections, _rng)
   }
 
   /**
@@ -93,11 +42,19 @@ class Solution(solution: Array[Int], maxD: Double, weightA: Double, rng: Random)
   * @return la solución evaluada en la función de costo
   */
   def cost: Double = {
+
     var total = 0.0
+    val maxDistance = connections.getMaxDistance
+    val weightAvg = connections.getWeightAvg
 
-    for(e <- edgeList) { total += increasedWeight(e) }
-
-    total / ( weightAvg * (_cities.length - 1))
+    for(i <- 1 until _cities.length) {
+      val d = connections.getDistance(_cities(i - 1), _cities(i))
+      if(d == -1.0)
+        total += factor * maxDistance
+      else
+        total += d
+    }
+    total / (weightAvg * (_cities.length - 1))
   }
 
   /**
@@ -105,7 +62,10 @@ class Solution(solution: Array[Int], maxD: Double, weightA: Double, rng: Random)
   * @return true si es factible, false e.o.c
   */
   def isFeasible: Boolean = {
-    for(e <- edgeList) { if(!e.exists) return false }
+    for(i <- 1 until _cities.length) {
+      if(!connections.exists(_cities(i - 1), _cities(i)))
+        return false
+    }
     return true
   }
 
@@ -123,6 +83,6 @@ class Solution(solution: Array[Int], maxD: Double, weightA: Double, rng: Random)
   * @return la cadena
   */
   override def toString = {
-    _cities.mkString(", ")
+    _cities.mkString(",")
   }
 }

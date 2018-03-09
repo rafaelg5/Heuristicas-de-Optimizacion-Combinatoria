@@ -13,5 +13,7 @@ object Parameters {
   var epsilonT = lines(6).substring(lines(6).indexOf('=') + 1).toDouble
   var epsilonP = lines(7).substring(lines(7).indexOf('=') + 1).toDouble
   var coolingFactor = lines(8).substring(lines(8).indexOf('=') + 1).toDouble
+  var N = lines(9).substring(lines(9).indexOf('=') + 1).toInt
+  var factor = lines(10).substring(lines(10).indexOf('=') + 1).toDouble
 
 }

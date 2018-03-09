@@ -24,7 +24,6 @@ class SimulatedAnnealing(initSolution: Solution) {
     var exit = 0
     val m = (scala.math.log(batchSize) / scala.math.log(2)).toInt
 
-    //val ti = System.currentTimeMillis()
     while (i < batchSize && exit < m){
 
       var newSolution = solution.neighbor
@@ -35,7 +34,6 @@ class SimulatedAnnealing(initSolution: Solution) {
       }
       exit += 1
     }
-//    val tf = System.currentTimeMillis()
 
     return (r / batchSize, solution)
   }

@@ -1,0 +1,4 @@
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(TemperatureTest, org.scalatest.tools.Framework$$anon$1@205909bd, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(SimulatedAnnealingTest, org.scalatest.tools.Framework$$anon$1@205909bd, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(DBConnectionTest, org.scalatest.tools.Framework$$anon$1@205909bd, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(SolutionTest, org.scalatest.tools.Framework$$anon$1@205909bd, false, [SuiteSelector])[0m

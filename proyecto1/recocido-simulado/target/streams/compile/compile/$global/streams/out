@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/main/scala/Connections.scala:15:18: value open is not a member of java.sql.Connection[0m
+[0m[[0m[31merror[0m] [0m[0m    println(conn.open)[0m
+[0m[[0m[31merror[0m] [0m[0m                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

@@ -11,6 +11,7 @@ class Temperature(temp: Double, solution: Solution){
   private val epsilonP = Parameters.epsilonP
   private val value = temp
   private val s = solution
+  private val n = Parameters.N
 
   /**
   * Devuelve el porcentaje de las soluciones aceptadas
@@ -22,7 +23,7 @@ class Temperature(temp: Double, solution: Solution){
     var counter = 0.0
     var solution = s
 
-    for(i <- 0 until 100){
+    for(i <- 0 until n){
 
       val newSolution = solution.neighbor
 
@@ -31,7 +32,7 @@ class Temperature(temp: Double, solution: Solution){
         solution = newSolution
       }
     }
-    return counter / 100
+    return counter / n
   }
 
   /**

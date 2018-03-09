@@ -1,0 +1,29 @@
+[0m[[0m[0minfo[0m] [0m[0mPackaging /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/recocido-simulado_2.12-1.0.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SimulatedAnnealing.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/SimulatedAnnealing.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Connections.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Connections.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DBConnection.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/DBConnection.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	City.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/City.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Edge.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Edge.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Temperature.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Temperature.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Parameters$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Parameters$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Parameters.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Parameters.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DBConnection$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/DBConnection$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Solution.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Solution.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/target/scala-2.12/classes/Main$.class[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m

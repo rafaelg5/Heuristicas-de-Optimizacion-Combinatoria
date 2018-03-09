@@ -3,15 +3,15 @@ import org.scalatest.FunSuite
 class SolutionTest extends FunSuite {
 
   val rng = scala.util.Random
-  rng.setSeed(Parameters.seed)
+  rng.setSeed(rng.nextLong)
 
   test("test neighbor()"){
 
     val initSolution1 = rng.shuffle(Parameters.instance1.toSeq)
     val initSolution2 = rng.shuffle(Parameters.instance2.toSeq)
 
-    val solution1 = new Solution(initSolution1.toArray)
-    val solution2 = new Solution(initSolution2.toArray)
+    val solution1 = new Solution(initSolution1.toArray, rng)
+    val solution2 = new Solution(initSolution2.toArray, rng)
 
     val neighbor1 = solution1.neighbor
     val neighbor2 = solution2.neighbor
@@ -35,12 +35,12 @@ class SolutionTest extends FunSuite {
     for(i <- 0 until solution2.cities.length) {
       if(solution2.cities(i) != neighbor2.cities(i)) c2 += 1
     }
-    
+
     assert(c1 === 2)
     assert(c2 === 2)
   }
 
   test("test costFunction()") {
-
+    assert(true)
   }
 }

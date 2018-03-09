@@ -1,0 +1,15 @@
+[0m[[0m[0minfo[0m] [0m[0m[32mSolutionTest:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- test neighbor() *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  java.sql.SQLException: statement is not executing[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.sqlite.core.CoreStatement.checkOpen(CoreStatement.java:50)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.sqlite.jdbc3.JDBC3Statement.getResultSet(JDBC3Statement.java:133)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.sqlite.jdbc3.JDBC3Statement.executeQuery(JDBC3Statement.java:88)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at Connections.<init>(Connections.scala:16)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at Solution.<init>(Solution.scala:16)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at Solution.<init>(Solution.scala:9)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at SolutionTest.$anonfun$new$1(SolutionTest.scala:13)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- test costFunction()[0m[0m
