@@ -7,18 +7,59 @@ import scala.util.{Success, Failure}
 object Main extends App {
 
   val rng = scala.util.Random
-  var bestSolution: Solution = _
-  val writer = new PrintWriter(new File("src/etc/solutions"))
+  val seed = 1573515412
 
-  val seed = rng.nextLong()
+  val ti = System.currentTimeMillis
+  var writer = new PrintWriter(new File(f"src/etc/solutions/optimo"))
 
-  val startTime = System.nanoTime
-  for(i <- seed to seed + 5000) {
+  rng.setSeed(seed)
+
+  // Construir la solución inicial (aleatoria)
+
+  val rngSol = rng.shuffle(Parameters.instance1.toSeq)
+
+  val initSolution = new Solution(rngSol.toArray, rng)
+
+  // Obtener la temperatura inicial
+  val t = new Temperature(Parameters.initTemp, initSolution)
+  var realInitTemp = t.initTemp(Parameters.percentage)
+
+  // Recocido simulado. Aceptación por umbrales
+  val sa = new SimulatedAnnealing(initSolution)
+  sa.acceptByThresholds(realInitTemp)
+
+  val tf = System.currentTimeMillis
+  val dur = tf - ti
+  val minSolution = sa.minSolution
+  val c = minSolution.cost
+  val feasible = { if(minSolution.isFeasible) "YES" else "NO"}
+
+  writer.write(f"Path:$minSolution%s\nEvaluation:$c%2.9f\nFeasible: $feasible%s\n$dur%f")
+  writer.flush
+  writer.close
+
+  /*
+  val rng = scala.util.Random
+  val seed = {
+    var r = rng.nextInt(Int.MaxValue)
+    val coin = rng.nextFloat
+    if(Int.MaxValue - 1000 < r) r = Int.MaxValue - 1000
+    if(coin > 0.5) r else -1 * r
+  }
+
+  var bestSolution = new Solution(Parameters.instance1, rng)
+  var bestSeed = seed
+
+  for(i <- seed until seed) {
+
+    val ti = System.currentTimeMillis
+    var writer = new PrintWriter(new File(f"src/etc/solutions/$i%d"))
 
     rng.setSeed(i)
 
     // Construir la solución inicial (aleatoria)
     val rngSol = rng.shuffle(Parameters.instance1.toSeq)
+
     val initSolution = new Solution(rngSol.toArray, rng)
 
     // Obtener la temperatura inicial
@@ -28,13 +69,28 @@ object Main extends App {
     // Recocido simulado. Aceptación por umbrales
     val sa = new SimulatedAnnealing(initSolution)
     sa.acceptByThresholds(realInitTemp)
-    val lastSolution = sa.minSolution
 
-    writer.write(f"$i%d: $lastSolution%s\n")
-  }
-  val endTime = System.nanoTime
-  val duration = (endTime - startTime) / 1000000000.0
-  writer.write(f"Total time:$duration%f\n")
+    val tf = System.currentTimeMillis
+    val dur = tf - ti
+    val minSolution = sa.minSolution
+    val c = minSolution.cost
+    val feasible = { if(minSolution.isFeasible) "YES" else "NO"}
+
+    if(c < bestSolution.cost) {
+      bestSolution = minSolution
+      bestSeed = i
+    }
+
+    writer.write(f"Path:$minSolution%s\nEvaluation:$c%2.9f\nFeasible: $feasible%s\n$dur%f")
+    writer.flush
+    writer.close
+  }*/
+  /*var writer = new PrintWriter(new File("src/etc/solutions/BEST"))
+  val c = bestSolution.cost
+  val feasible = { if(bestSolution.isFeasible) "YES" else "NO"}
+  writer.write(f"Path: $bestSolution%s\nEvaluation: $c%2.9f\nFeasible: $feasible%s\nSeed: $bestSeed%d")
+  writer.flush
+  writer.close*/
 
     /*
     // Instancia de 150 ciudades
@@ -63,8 +119,21 @@ object Main extends App {
       }
       thread.start
     }*/
+  //evaluate
 
-  writer.close
+  /*private def evaluate = {
+    val src = scala.io.Source.fromFile("src/etc/solutions")
+    var lines = src.getLines.toArray
+    src.close
+
+    for(line <- lines) {
+      val s = line.substring(line.indexOf(':') + 2)
+      if(!(s contains '.')) {
+        val sol = new Solution(s.split(",").map(_.toInt), rng)
+        println(sol.cost)
+      }
+    }
+  }*/
 }
 
 /*

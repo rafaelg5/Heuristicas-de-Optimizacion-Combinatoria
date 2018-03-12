@@ -7,7 +7,7 @@ import scala.util.Random
 class Solution(solution: Array[Int], conns: Connections, rng: Random) {
 
   def this(solution: Array[Int], rng: Random) = this(solution, null, rng)
-  
+
   private val _cities = solution
   private val _rng = rng
   private val factor = Parameters.factor
@@ -22,14 +22,13 @@ class Solution(solution: Array[Int], conns: Connections, rng: Random) {
   * cambia en una arista de la solución.
   * @return la solución vecina
   */
-  def neighbor: Solution = {
+  def neighbor = {
 
-    var num = 0
-    var num2 = 0
-    do {
+    var num = 0; var num2 = 0
+    while(num == num2) {
       num = _rng.nextInt(_cities.length)
       num2 = _rng.nextInt(_cities.length)
-    } while(num == num2)
+    }
 
     var neighborSolution = _cities.clone
     swap(num, num2, neighborSolution)

@@ -1,3 +1,5 @@
+import util.control.Breaks._
+import java.io._
 
 class SimulatedAnnealing(initSolution: Solution) {
 
@@ -5,6 +7,8 @@ class SimulatedAnnealing(initSolution: Solution) {
   private val coolingFactor = Parameters.coolingFactor
   private var _minSolution = initSolution
   private val batchSize = Parameters.batchSize
+  private val exitBatch = 50 * batchSize
+  private var X = 0
 
   def minSolution = _minSolution
 
@@ -15,26 +19,29 @@ class SimulatedAnnealing(initSolution: Solution) {
   * @param s una solución
   * @return una tupla que contiene el promedio de soluciones y la última solución
   */
-  private def computeBatch(temp: Double, s: Solution): (Double, Solution) = {
+  private def computeBatch(temp: Double, s: Solution, writer: PrintWriter): (Double, Solution) = {
+
 
     var i = 0
     var r = 0.0
     var solution = s
 
     var exit = 0
-    val m = (scala.math.log(batchSize) / scala.math.log(2)).toInt
 
-    while (i < batchSize && exit < m){
+    while (i < batchSize && exit < exitBatch){
 
       var newSolution = solution.neighbor
       if(newSolution.cost <= solution.cost + temp){
-        solution = newSolution
         i += 1
-        r += newSolution.cost
+        val newSCost = newSolution.cost
+        r += newSCost
+        X += 1
+        writer.append(f"$X%d\t$newSCost%f\n")
+        writer.flush
+        solution = newSolution
       }
       exit += 1
     }
-
     return (r / batchSize, solution)
   }
 
@@ -45,23 +52,30 @@ class SimulatedAnnealing(initSolution: Solution) {
   */
   def acceptByThresholds(_temp: Double): Unit = {
 
+    var writer = new PrintWriter(new FileOutputStream(new File("src/etc/graphs/g.txt"), true))
 
     var avg = 0.0
     var temp = _temp
     var newSolution = _minSolution
+    val c = newSolution.cost
+    writer.append(f"$X%d\t$c%f\n")
 
     while(temp > epsilon) {
 
       var auxAvg = Double.MaxValue
-
-      while(avg <= auxAvg) {
-        auxAvg = avg
-        var result = computeBatch(temp, newSolution)
-        avg = result._1
-        newSolution = result._2
-        if(newSolution.cost < _minSolution.cost) _minSolution = newSolution
+      breakable{
+        while(avg <= auxAvg) {
+          auxAvg = avg
+          var result = computeBatch(temp, newSolution, writer)
+          avg = result._1
+          newSolution = result._2
+          if(newSolution.cost < _minSolution.cost) _minSolution = newSolution
+          if(avg == 0) break
+        }
       }
-      temp = coolingFactor * temp
+      temp *= coolingFactor
     }
+    writer.close
   }
+
 }
