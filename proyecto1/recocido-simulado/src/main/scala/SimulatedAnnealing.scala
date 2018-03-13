@@ -8,7 +8,7 @@ class SimulatedAnnealing(initSolution: Solution) {
   private var _minSolution = initSolution
   private val batchSize = Parameters.batchSize
   private val exitBatch = 50 * batchSize
-  private var X = 0
+  //private var X = 0
 
   def minSolution = _minSolution
 
@@ -35,9 +35,9 @@ class SimulatedAnnealing(initSolution: Solution) {
         i += 1
         val newSCost = newSolution.cost
         r += newSCost
-        X += 1
-        writer.append(f"$X%d\t$newSCost%f\n")
-        writer.flush
+        /*X += 1
+        writer.append(f"$X%d\t$newSCost%2.9f\n")
+        writer.flush*/
         solution = newSolution
       }
       exit += 1
@@ -52,13 +52,13 @@ class SimulatedAnnealing(initSolution: Solution) {
   */
   def acceptByThresholds(_temp: Double): Unit = {
 
-    var writer = new PrintWriter(new FileOutputStream(new File("src/etc/graphs/g.txt"), true))
+    //var writer = new PrintWriter(new FileOutputStream(new File("src/etc/graphs/best_40_graph"), true))
 
     var avg = 0.0
     var temp = _temp
     var newSolution = _minSolution
-    val c = newSolution.cost
-    writer.append(f"$X%d\t$c%f\n")
+    /*val c = newSolution.cost
+    writer.append(f"$X%d\t$c%2.9f\n")*/
 
     while(temp > epsilon) {
 
@@ -75,7 +75,7 @@ class SimulatedAnnealing(initSolution: Solution) {
       }
       temp *= coolingFactor
     }
-    writer.close
+    //writer.close
   }
 
 }
