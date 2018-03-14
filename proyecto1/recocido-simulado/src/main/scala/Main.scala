@@ -8,81 +8,95 @@ object Main extends App {
 
   val rng = scala.util.Random
   // Semilla inicial aleatoria
-  val seed = {
+  /*val seed = {
     var r = rng.nextInt(Int.MaxValue)
     val coin = rng.nextFloat
     if(Int.MaxValue - 1000 < r) r = Int.MaxValue - 1000
     if(coin > 0.5) r else -1 * r
   }
+*/
+  val seed = 245441509
 
-  val l1 = Parameters.instance1.length; val l2 = Parameters.instance2.length
+  run(2, 1000);
 
-  /********** 40 ciudades **********/
-  /*
-  for(i <- seed until seed + 999) {
+  def run(instance: Int, iterations: Int): Unit = {
 
-    val ti = System.currentTimeMillis
-    var writer = new PrintWriter(new File(f"src/etc/solutions/$l1-$i%d"))
+    if(instance < 1 || instance > 2) System.exit(0)
 
-    rng.setSeed(i)
+    if(instance == 1) {
 
-    // Construir la solución inicial (aleatoria)
-    val rngSol = rng.shuffle(Parameters.instance1.toSeq)
+      val l1 = Parameters.instance1.length
 
-    val initSolution = new Solution(rngSol.toArray, rng)
+      /********** 40 ciudades **********/
+      for(i <- seed until seed + iterations - 1) {
 
-    // Obtener la temperatura inicial
-    val t = new Temperature(Parameters.initTemp, initSolution)
-    var realInitTemp = t.initTemp(Parameters.percentage)
+        val ti = System.currentTimeMillis
+        var writer = new PrintWriter(new File(f"src/etc/solutions/$l1-$i%d"))
 
-    // Recocido simulado. Aceptación por umbrales
-    val sa = new SimulatedAnnealing(initSolution)
-    sa.acceptByThresholds(realInitTemp)
+        rng.setSeed(i)
 
-    val tf = System.currentTimeMillis
-    val dur = tf - ti
-    val minSolution = sa.minSolution
-    val c = minSolution.cost
-    val feasible = { if(minSolution.isFeasible) "YES" else "NO"}
+        // Construir la solución inicial (aleatoria)
+        val rngSol = rng.shuffle(Parameters.instance1.toSeq)
 
-    writer.write(f"Path:$minSolution%s\nEvaluation:$c%2.9f\nFeasible: $feasible%s\n$dur%f")
-    writer.flush
-    writer.close
-  }*/
+        val initSolution = new Solution(rngSol.toArray, rng)
 
-  /********** 150 ciudades **********/
-  /*
-  for(i <- seed until seed + 999) {
+        // Obtener la temperatura inicial
+        val t = new Temperature(Parameters.initTemp, initSolution)
+        var realInitTemp = t.initTemp(Parameters.percentage)
 
-    val ti = System.currentTimeMillis
-    var writer = new PrintWriter(new File(f"src/etc/solutions/$l2%d-$i%d"))
+        // Recocido simulado. Aceptación por umbrales
+        val sa = new SimulatedAnnealing(initSolution)
+        sa.acceptByThresholds(realInitTemp)
 
-    rng.setSeed(i)
+        val tf = System.currentTimeMillis
+        val dur = tf - ti
+        val minSolution = sa.minSolution
+        val c = minSolution.cost
+        val feasible = { if(minSolution.isFeasible) "YES" else "NO"}
 
-    // Construir la solución inicial (aleatoria)
-    val rngSol = rng.shuffle(Parameters.instance2.toSeq)
+        writer.write(f"Path:$minSolution%s\nEvaluation:$c%2.9f\nFeasible: $feasible%s\n$dur%f\nSeed: $seed%d")
+        writer.flush
+        writer.close
+      }
 
-    val initSolution = new Solution(rngSol.toArray, rng)
+    } else if(instance == 2) {
 
-    // Obtener la temperatura inicial
-    val t = new Temperature(Parameters.initTemp, initSolution)
-    var realInitTemp = t.initTemp(Parameters.percentage)
+      val l2 = Parameters.instance2.length
 
-    // Recocido simulado. Aceptación por umbrales
-    val sa = new SimulatedAnnealing(initSolution)
-    sa.acceptByThresholds(realInitTemp)
+      /********** 150 ciudades **********/
+      for(i <- seed until seed + iterations - 1) {
 
-    val tf = System.currentTimeMillis
-    val dur = tf - ti
-    val minSolution = sa.minSolution
-    val c = minSolution.cost
-    val feasible = { if(minSolution.isFeasible) "YES" else "NO"}
+        val ti = System.currentTimeMillis
+        var writer = new PrintWriter(new File(f"src/etc/solutions/$l2%d-$i%d"))
 
-    writer.write(f"Path:$minSolution%s\nEvaluation:$c%2.9f\nFeasible: $feasible%s\n$dur%f")
-    writer.flush
-    writer.close
+        rng.setSeed(i)
+
+        // Construir la solución inicial (aleatoria)
+        val rngSol = rng.shuffle(Parameters.instance2.toSeq)
+
+        val initSolution = new Solution(rngSol.toArray, rng)
+
+        // Obtener la temperatura inicial
+        val t = new Temperature(Parameters.initTemp, initSolution)
+        var realInitTemp = t.initTemp(Parameters.percentage)
+
+        // Recocido simulado. Aceptación por umbrales
+        val sa = new SimulatedAnnealing(initSolution)
+        sa.acceptByThresholds(realInitTemp, true, f"$l2%d-$i%d")
+
+        val tf = System.currentTimeMillis
+        val dur = tf - ti
+        val minSolution = sa.minSolution
+
+        val c = minSolution.cost
+        val feasible = { if(minSolution.isFeasible) "YES" else "NO"}
+
+        writer.write(f"Path:$minSolution%s\nEvaluation:$c%2.9f\nFeasible: $feasible%s\n$dur%f\nSeed: $seed%d")
+        writer.flush
+        writer.close
+      }
+    }
   }
-  */
 }
 
 /*

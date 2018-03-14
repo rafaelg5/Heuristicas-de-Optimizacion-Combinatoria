@@ -238,3 +238,9 @@ compile
 run
 compile
 run
+compile
+run
+compile
+reset
+compile
+run

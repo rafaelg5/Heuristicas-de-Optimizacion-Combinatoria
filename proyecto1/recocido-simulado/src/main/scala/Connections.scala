@@ -25,7 +25,7 @@ class Connections(cities: Array[Int]) {
   private var maxDistance = {
     val str = cities.mkString(",")
     val query = f"select max(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);"
-    val rs = conn.createStatement.executeQuery(query)
+    val rs = conn.createStatement.executeQuery(query)    
     rs.getDouble(1)
   }
 
