@@ -1,6 +1,5 @@
 #Successful Tests
-#Sun Mar 11 19:32:15 CST 2018
-SolutionTest=1520818335258
-SimulatedAnnealingTest=1520818333567
-TemperatureTest=1520818333569
-DBConnectionTest=1520567946423
+#Fri Mar 23 08:08:17 CST 2018
+SolutionTest=1521814097510
+SimulatedAnnealingTest=1521814096435
+TemperatureTest=1521814096436

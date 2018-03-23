@@ -14,21 +14,23 @@ class Connections(cities: Array[Int]) {
     conn = DriverManager.getConnection("jdbc:sqlite:./src/etc/database.db")
     conn.setAutoCommit(false)
   } catch {
-    case ex: ClassNotFoundException => {
-      println(ex.toString())
-    }
-    case ex: SQLException => {
-      println(ex.toString())
-    }
+    case ex: ClassNotFoundException => { println(ex.toString()) }
+    case ex: SQLException => { println(ex.toString()) }
   }
 
+  /*
+  * Distancia máxima de las conexiones
+  */
   private var maxDistance = {
     val str = cities.mkString(",")
     val query = f"select max(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);"
-    val rs = conn.createStatement.executeQuery(query)    
+    val rs = conn.createStatement.executeQuery(query)
     rs.getDouble(1)
   }
 
+  /*
+  * Peso (distancia) promedio de las conexiones
+  */
   private var weightAvg = {
     val str = cities.mkString(",")
     val query = f"select avg(distance) from connections where id_city_1 in ($str%s) and id_city_2 in ($str%s);"
@@ -36,7 +38,7 @@ class Connections(cities: Array[Int]) {
     rs.getDouble(1)
   }
 
-  private val connMap = HashMap.empty[(Int, Int), Double]
+  private val connMatrix = Array.ofDim[Double](1092,1092)
 
   val rs = conn.createStatement.executeQuery("SELECT * FROM connections;")
 
@@ -44,7 +46,8 @@ class Connections(cities: Array[Int]) {
     val city1 = rs.getInt(1)
     val city2 = rs.getInt(2)
     val distance = rs.getDouble(3)
-    connMap += ((city1, city2) -> distance)
+    connMatrix(city1 - 1)(city2 - 1) = distance
+    connMatrix(city2 - 1)(city1 - 1) = distance
   }
 
   conn.commit
@@ -58,29 +61,22 @@ class Connections(cities: Array[Int]) {
   /**
   * Determina si existe una conexión entre dos ciudades
   * @param city1 la primera ciudad
-  * @param city1 la segunda ciudad
+  * @param city2 la segunda ciudad
   * @return true si existe dicha conexión
   */
   def exists(city1: Int, city2: Int): Boolean = {
-    if((connMap contains (city1, city2)) || (connMap contains (city2, city1)))
-      return true
-    return false
+    if(connMatrix(city1 - 1)(city2 - 1) == 0.0)
+      return false
+    return true
   }
 
   /**
   * Devuelve la distancia entre dos ciudades conectadas
   * @param city1 la primera ciudad
-  * @param city1 la segunda ciudad
-  * @return la distancia entre las ciudades o -1 si no están conectadas
+  * @param city2 la segunda ciudad
+  * @return la distancia entre las ciudades o 0.0 si no están conectadas
   */
   def getDistance(city1: Int, city2: Int): Double = {
-
-    if(connMap contains (city1, city2))
-      return connMap((city1, city2))
-
-    if(connMap contains (city2, city1))
-      return connMap((city2, city1))
-
-    return -1.0
+    return connMatrix(city1 - 1)(city2 - 1)
   }
 }

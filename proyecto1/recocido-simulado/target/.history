@@ -244,3 +244,142 @@ compile
 reset
 compile
 run
+compile
+run
+exit
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run 40 1573515412
+compile
+run 40 1573515412
+compile
+run 40 1573515412
+compile
+run 40 1573515412
+compile
+run 40 1573515412
+compile
+run 40 1573515412
+compile
+run 40 1573515412
+compile
+run 40 1573515412
+compile
+run 40 1573515412
+compile
+run 40 1573515412
+run 150
+compile
+run 150
+run 40
+compile
+run 40
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run 40
+compile
+run 40 10
+compile
+run
+compile
+run 40 10
+compile
+run
+run 40 10
+compile
+run 40 10
+compile
+run 40
+compile
+run 40
+compile
+run 40
+compile
+run 40 15
+compile
+run
+compile
+run 40 100
+run 40
+run
+compile
+run
+run 40
+compile
+run
+run 40
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+run 40
+compile
+run
+run >> lol.txt
+compile
+run 40
+sbt
+run
+run 40
+compile
+run 40
+compile
+run 40
+compile
+run 40
+compile
+run 40
+compile
+run 40
+compile
+run 40
+compile
+run 150
+clean
+cleanFiles
+compile
+doc
+clean
+cleanFiles
+compile
+doc
+test

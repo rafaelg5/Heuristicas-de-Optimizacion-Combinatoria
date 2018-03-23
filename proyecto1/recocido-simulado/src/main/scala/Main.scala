@@ -1,34 +1,43 @@
 import java.io._
 import scala.io.Source
-import scala.concurrent._
-import ExecutionContext.Implicits.global
-import scala.util.{Success, Failure}
 
 object Main extends App {
 
   val rng = scala.util.Random
-  // Semilla inicial aleatoria
-  /*val seed = {
-    var r = rng.nextInt(Int.MaxValue)
-    val coin = rng.nextFloat
-    if(Int.MaxValue - 1000 < r) r = Int.MaxValue - 1000
-    if(coin > 0.5) r else -1 * r
+  args.length match {
+    case 0 => println("Se necesitan más argumentos! Leer modo de uso en el README.")
+
+    case 1 => {
+      val seed = {
+
+        var r = rng.nextLong
+        val coin = rng.nextFloat
+        if(Long.MaxValue - 1000 < r) r = Long.MaxValue - 1000
+        if(coin > 0.5) r else (-1) * r
+      }
+      run(args(0).toInt, Parameters.seeds, seed)
+    }
+    case 2 => {
+      val seed = args(1).toLong
+      run(args(0).toInt, 1, seed)
+    }
+
+    case what => printf(f"Demasiados argumentos ($what)! Leer modo de uso en el README.")
   }
-*/
-  val seed = 245441509
 
-  run(2, 1000);
+  private def run(instance: Int, iterations: Int, seed: Long): Unit = {
 
-  def run(instance: Int, iterations: Int): Unit = {
+    if(instance != 40 && instance != 150) {
+      println("Tamaño de instancia incorrecto. Leer modo de uso en el README.")
+      return
+    }
 
-    if(instance < 1 || instance > 2) System.exit(0)
-
-    if(instance == 1) {
+    if(instance == 40) {
 
       val l1 = Parameters.instance1.length
 
       /********** 40 ciudades **********/
-      for(i <- seed until seed + iterations - 1) {
+      for(i <- seed to seed + iterations - 1) {
 
         val ti = System.currentTimeMillis
         var writer = new PrintWriter(new File(f"src/etc/solutions/$l1-$i%d"))
@@ -46,7 +55,7 @@ object Main extends App {
 
         // Recocido simulado. Aceptación por umbrales
         val sa = new SimulatedAnnealing(initSolution)
-        sa.acceptByThresholds(realInitTemp)
+        sa.acceptByThresholds(realInitTemp, true, f"$l1%d-$i%d")
 
         val tf = System.currentTimeMillis
         val dur = tf - ti
@@ -59,12 +68,12 @@ object Main extends App {
         writer.close
       }
 
-    } else if(instance == 2) {
+    } else if(instance == 150) {
 
       val l2 = Parameters.instance2.length
 
       /********** 150 ciudades **********/
-      for(i <- seed until seed + iterations - 1) {
+      for(i <- seed to seed + iterations - 1) {
 
         val ti = System.currentTimeMillis
         var writer = new PrintWriter(new File(f"src/etc/solutions/$l2%d-$i%d"))

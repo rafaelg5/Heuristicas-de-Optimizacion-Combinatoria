@@ -30,13 +30,13 @@ class SimulatedAnnealing(initSolution: Solution) {
     while (i < batchSize && exit < exitBatch){
 
       var newSolution = solution.neighbor
-      if(newSolution.cost <= solution.cost + temp){
+      val newCost = newSolution.cost
+      if(newCost <= solution.cost + temp){
         i += 1
-        val newSCost = newSolution.cost
-        r += newSCost
+        r += newCost
         solution = newSolution
         if(writer != null) {
-          writer.append(f"$X%d\t$newSCost%2.9f\n")
+          writer.append(f"$X%d\t$newCost%2.9f\n")
           writer.flush
           X += 1
         }
@@ -73,9 +73,9 @@ class SimulatedAnnealing(initSolution: Solution) {
             auxAvg = avg
             var result = computeBatch(temp, newSolution, writer)
             avg = result._1
+            if(avg == 0) break
             newSolution = result._2
             if(newSolution.cost < _minSolution.cost) _minSolution = newSolution
-            //if(avg == 0) break
           }
         }
         temp *= coolingFactor
@@ -96,9 +96,9 @@ class SimulatedAnnealing(initSolution: Solution) {
             auxAvg = avg
             var result = computeBatch(temp, newSolution)
             avg = result._1
+            if(avg == 0) break
             newSolution = result._2
             if(newSolution.cost < _minSolution.cost) _minSolution = newSolution
-            //if(avg == 0) break
           }
         }
         temp *= coolingFactor

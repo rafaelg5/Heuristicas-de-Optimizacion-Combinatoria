@@ -1,7 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/main/scala/SimulatedAnnealing.scala:22:63: identifier expected but integer literal found.[0m
-[0m[[0m[31merror[0m] [0m[0m  private def computeBatch(temp: Double, s: Solution, x: Int=-1, writer: PrintWriter=null): (Double, Solution) = {[0m
-[0m[[0m[31merror[0m] [0m[0m                                                              ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/main/scala/SimulatedAnnealing.scala:109:1: ')' expected but '}' found.[0m
-[0m[[0m[31merror[0m] [0m[0m}[0m
-[0m[[0m[31merror[0m] [0m[0m^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
