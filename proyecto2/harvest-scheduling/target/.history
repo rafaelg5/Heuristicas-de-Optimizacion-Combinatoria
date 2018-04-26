@@ -1,0 +1,6 @@
+clean
+cleanFiles
+compile
+clean
+cleanFiles
+exit

@@ -1,0 +1,86 @@
+\documentclass[12px]{article}
+
+\usepackage[paper=a4paper,dvips,top=1.5cm,left=2.5cm,right=2.5cm,foot=1cm,bottom=1.5cm]{geometry}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\graphicspath{ {/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto1/recocido-simulado/src/etc/graphs/} }
+\title{Problema del Agente Viajero}
+\author{Rafael de Jesús García García\\
+Facultad de Ciencias\\
+Universidad Nacional Autónoma de México}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Dado un problema NP-duro, en este caso el Problema del Agente Viajero o TSP por sus siglas en inglés, se presenta una heurística llamada ``Recocido Simulado'' ó ``Enfriamiento simulado'' que se explicará más adelante. Esta heurística es capaz de obtener resultados muy cercanos a la solución en un tiempo mucho menor que si usáramos un algoritmo de fuerza bruta para resolverlo. Se modeló el problema usando el lenguaje de programación Scala, el cual es orientado a objetos y funcional.
+\end{abstract}
+
+\section{Introducción}
+\subsection{Problema del Agente Viajero}
+
+Ejemplar: Una gráfica G con un conjunto de vértices V que representa las ciudades y aristas E que representan los caminos entre las ciudades.\\ \par
+Problema: ¿Cuál es la ruta más corta posible que visita cada ciudad exactamente una vez y al finalizar regresa a la ciudad de origen?\\ \par
+Este problema es de los problemas más conocidos en las Ciencias de la Computación. Es un problema NP-duro dentro de la optimización combinatoria. [1] \\ \par
+En nuestro caso vamos a limitar nuestro problema a encontrar una ruta que visite cada ciudad exactamente una vez, pero sin que la última ciudad y la primera estén conectadas. Tendremos dos ejemplares del problema, uno con 40 ciudades y otro con 150.
+
+\subsection{Recocido Simulado}
+El recocido simulado es una meta heurística para aproximar al máximo global de una función dada en un espacio de búsqueda muy grande. El nombre de esta técnica viene del recocido en la metalurgia, una técnica que involucra calentamiento y el enfriamiento controlado de un material para incrementar el tamaño de sus cristales y reducir sus defectos. La simulación del recocido puede ser usada para encontrar una aproximación a un máximo global para una función con un número grande de variables. [2]
+
+\section{Modelo}
+El problema se dividió en distintas clases para su mejor funcionamiento. A continuación se detallaran brevemente el funcionamiento de cada una de ellas.\\ \par
+
+La primera clase \texttt{Solution} describe una solución, la cual contiene una lista de ciudades en orden que representa el camino, el valor de la función de costo que evalúa a esa solución y algunas constantes que ayudan en ese cálculo, las conexiones existentes, una función para obtener un vecino aleatorio de la solución, y una función para deteminar si es factible la solución. \\ \par
+
+La clase \texttt{Temperature} contiene los algoritmos para calcular una temperatura inicial para el sistema basándose en un valor inicial que se define de manera experimental.\\ \par
+
+La clase \texttt{SimulatedAnnealing} contiene el algoritmo de aceptación por umbrales.\\ \par
+
+Finalmente, el objeto \texttt{Parameters} contiene los parámetros experimentales con los que va a trabajar el sistema.
+
+\section{Experimentación}
+Usando la heurística de recocido simulado se pueden obtener muy buenos resultados, sin embargo, la función \texttt{neighbor} de la solución no es determinista, por eso se usa un generador de números aleatorios y se guarda la semilla para poder reproducir los resultados. A continuación se mostrarán unas gráficas de cómo el sistema va mejorando su función de costo hasta llegar al resultado final para esa ejecución.
+
+\includegraphics[scale=0.5]{g1.png}
+
+Esta gráfica es la ejecución para el ejemplar de 40 ciudades con evaluación de 0.616235865 con los siguientes parámetros:\\
+\begin{itemize}
+\item $T_i$: 8
+\item Tamaño de lote: 1000
+\item Porcentaje de aceptados (P): 95\%
+\item $\varepsilon$: 0.001
+\item $\varepsilon_T$: 0.001
+\item $\varepsilon_P$: 0.001
+\item $\varphi$: 0.99
+\end{itemize}
+
+\includegraphics[scale=0.6]{g2.png}
+
+Esta gráfica es la ejecución para el ejemplar de 150 ciudades con evaluación de 0.285108488 con los siguientes parámetros:\\
+\begin{itemize}
+\item $T_i$: 8
+\item Tamaño de lote: 1000
+\item Porcentaje de aceptados (P): 95\%
+\item $\varepsilon$: 0.001
+\item $\varepsilon_T$: 0.001
+\item $\varepsilon_P$: 0.001
+\item $\varphi$: 0.99
+\end{itemize}
+
+\section{Conclusiones}
+Usando la heurística de recocido simulado se pudo ver que se encuentran soluciones suficientemente buenas para un problema que de otra forma sería imposible de resolver por cuestiones de tiempo. Otro factor que influyó en la realización del proyecto es el modelo. Haciendo un diseño bastante adaptivo desde el inicio permite mejorar el sistema después. Por ejemplo, se pueden agregar optimizaciones para que el sistema se ejecute lo más rápido posible, ya que el tiempo es vital en experimentos de este estilo. En este caso, se agregó al final una optimización para no calcular la función de costo cada vez que se cree un vecino nuevo, sino calcular solo las distancias que cambian modificar la función de costo actual, esto se logra en tiempo constante, en vez de tiempo lineal como se hacía al inicio para calcular la función. \\ \par
+El problema del agente viajero tiene muchas aplicaciones como en genética, por mencionar alguna. La importancia de este tipo de técnicas para parcialmente resolver problemas NP-duros es relevante en el mundo actual, ya que con cantidades tan grandes de información creciendo cada día es necesario resolver problemas cada vez más rápido.
+
+\begin{thebibliography}{9}
+\bibitem{Travelling Salesman Problem}
+Travelling Salesman Problem,\\
+\texttt{https://en.wikipedia.org/wiki/Travelling\_salesman\_problem}
+\bibitem{Simulated Annealing}
+Simulated Annealing,\\
+\texttt{https://en.wikipedia.org/wiki/Simulated\_annealing}
+\end{thebibliography}
+
+\end{document}

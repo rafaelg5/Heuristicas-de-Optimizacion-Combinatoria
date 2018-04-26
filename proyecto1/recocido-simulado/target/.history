@@ -383,3 +383,14 @@ cleanFiles
 compile
 doc
 test
+exit
+run 40
+run 150
+compile
+run 150
+compile
+run 150
+compile
+run 150 720399448189454024
+compile
+run 150

@@ -55,7 +55,8 @@ object Main extends App {
 
         // Recocido simulado. Aceptación por umbrales
         val sa = new SimulatedAnnealing(initSolution)
-        sa.acceptByThresholds(realInitTemp, true, f"$l1%d-$i%d")
+        //sa.acceptByThresholds(realInitTemp, true, f"$l1%d-$i%d")
+        sa.acceptByThresholds(realInitTemp, false)
 
         val tf = System.currentTimeMillis
         val dur = tf - ti
@@ -91,7 +92,8 @@ object Main extends App {
 
         // Recocido simulado. Aceptación por umbrales
         val sa = new SimulatedAnnealing(initSolution)
-        sa.acceptByThresholds(realInitTemp, true, f"$l2%d-$i%d")
+        //sa.acceptByThresholds(realInitTemp, true, f"$l2%d-$i%d")
+        sa.acceptByThresholds(realInitTemp, false)
 
         val tf = System.currentTimeMillis
         val dur = tf - ti
