@@ -35,3 +35,13 @@ exit
 clean
 cleanFiles
 exit
+compile
+test
+exit
+compile
+test
+compile
+test
+compile
+test
+exit

@@ -1,0 +1,37 @@
+[0m[[0m[0minfo[0m] [0m[0m[32mSchedulePlanSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mObjective function[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should return a value > 0 *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  0.0 was not greater than 0 (SchedulePlanSpec.scala:9)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mNeighbor units[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should have an edge between unit and neighbor *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  java.lang.NullPointerException:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.mutable.ArrayOps$ofInt$.length$extension(ArrayOps.scala:248)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.mutable.ArrayOps$ofInt.length(ArrayOps.scala:248)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.IndexedSeqOptimized.foreach(IndexedSeqOptimized.scala:31)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.IndexedSeqOptimized.foreach$(IndexedSeqOptimized.scala:29)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.mutable.ArrayOps$ofInt.foreach(ArrayOps.scala:242)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at SchedulePlanSpec.$anonfun$new$2(SchedulePlanSpec.scala:15)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:12)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mUnit[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should meet adjacency if no adjacent units between 2 years have been harvested[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mNeighbors[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should not be null or empty *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  null equaled null (SchedulePlanSpec.scala:28)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mNeighbors[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should only differ in one element *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  java.lang.NullPointerException:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.mutable.ArrayOps$ofRef$.length$extension(ArrayOps.scala:200)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.mutable.ArrayOps$ofRef.length(ArrayOps.scala:200)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.IndexedSeqOptimized.foreach(IndexedSeqOptimized.scala:31)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.IndexedSeqOptimized.foreach$(IndexedSeqOptimized.scala:29)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:194)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at SchedulePlanSpec.$anonfun$new$6(SchedulePlanSpec.scala:35)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.Transformer.apply(Transformer.scala:22)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m

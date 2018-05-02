@@ -12,6 +12,16 @@ class SchedulePlan(units: Int, unitsAdjacency: Array[Array[Int]], periods: Int, 
   */
   val timberVolume = Parameters.timberVolume
 
+  private var _table = solution
+
+  def adjacencyMatrix = unitsAdjacency
+
+  def table = _table
+
+  def totalUnits = units
+
+  def totalPeriods = periods
+
   /* Devuelve el volumen por hectárea dada la edad */
   private def getTimberVolume(age: Int) = timberVolume(age - 15)
 
@@ -19,9 +29,11 @@ class SchedulePlan(units: Int, unitsAdjacency: Array[Array[Int]], periods: Int, 
   * volumen de la tala, costo de talar una unidad i en el periodo t
   */
 
+  def getNeighborUnits(unit: Int):Array[Int] = null
+
   def unitMeetsAdjacency(unit: Int):Boolean = true
 
-  def getNeighbors:Array[SchedulePlan] = null
+  def getNeighborPlans:Array[SchedulePlan] = null
 
   def cost: Double = 0.0
 
