@@ -14,7 +14,7 @@ object TabuSearch {
     tabuList += plan
 
     while(i < iterations){
-      val sNeighborhood = bestCandidate.getNeighborPlans
+      val sNeighborhood = bestCandidate.neighborhood
       bestCandidate = sNeighborhood(0)
       for(sCandidate <- sNeighborhood) {
         if(tabuList.contains(sCandidate) && sCandidate.cost > bestCandidate.cost){

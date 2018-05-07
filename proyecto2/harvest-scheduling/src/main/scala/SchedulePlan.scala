@@ -4,7 +4,32 @@ import scala.util.Random
 * @constructor crea un nuevo plan o programa para el aprovechamiento de recursos
 * forestales
 */
-class SchedulePlan(units: Int, unitsAdjacency: Array[Array[Int]], periods: Int, solution: Array[Array[Double]]) {
+class SchedulePlan(solution: Array[Array[Cell]]) {
+
+  /*
+  * Función objetivo:
+  * Max ΣΣ (Rev_it - Lc_it) x X_it x V_it
+  * donde
+  * i = unidad
+  * t = periodo
+  * Rev_it = ingreso por metro cúbico para la unidad i talada en el periodo t
+  * Lc_it = costo de tala por metro cúbico para la unidad i talada en el periodo t
+  * V_it = volumen por hectarea para la unidad i talada en el periodo t
+  * X_it = variable de decisión (0,1) donde la unidad i es talada en el periodo t
+  *
+  */
+
+  /* Restricciones:
+  *
+  * 1. Restricción de singularidad
+  * Σ X_it <= 1 for i = 1, ..., units
+  *
+  * 2. Restricciones de adyacencia
+  * Σ from t-2 to t+2 X_(i-1)t + Σ from t-2 to t+2 X_(i-25)t +
+  * 4 x X_it x Σ from t-2 to t+2 X_(i-25)t + Σ from t-2 to t+2 X_(i-1)t <= 4
+  *
+  */
+
 
   /* Volumen (m^3) por hectárea por edad de los árboles
   * Las edades van de 15 años a 40
@@ -14,26 +39,18 @@ class SchedulePlan(units: Int, unitsAdjacency: Array[Array[Int]], periods: Int, 
 
   private var _table = solution
 
-  def adjacencyMatrix = unitsAdjacency
-
   def table = _table
 
-  def totalUnits = units
+  def units = solution(0).length
 
-  def totalPeriods = periods
+  def periods = solution.length
 
   /* Devuelve el volumen por hectárea dada la edad */
   private def getTimberVolume(age: Int) = timberVolume(age - 15)
 
-  /* params de la unidad: area, ingreso neta, edad promedio de áboles,
-  * volumen de la tala, costo de talar una unidad i en el periodo t
-  */
-
-  def getNeighborUnits(unit: Int):Array[Int] = null
-
   def unitMeetsAdjacency(unit: Int):Boolean = true
 
-  def getNeighborPlans:Array[SchedulePlan] = null
+  def neighborhood:Array[SchedulePlan] = null
 
   def cost: Double = 0.0
 

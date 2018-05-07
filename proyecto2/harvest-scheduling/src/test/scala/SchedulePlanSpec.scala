@@ -3,42 +3,48 @@ import org.scalatest._
 class SchedulePlanSpec extends FlatSpec with Matchers {
 
   val rng = scala.util.Random
-  var plan = new SchedulePlan(50,null,10,null)
+  var plan = new SchedulePlan(null)
 
   "Objective function" should "return a value > 0" in {
     assert(plan.cost > 0)
   }
 
-  "Neighbor units" should "have an edge between unit and neighbor" in {
-    val unit = rng.nextInt(plan.totalUnits)
-    val neighborUnits = plan.getNeighborUnits(unit)
-    for(neighbor <- neighborUnits) {
-      assert(plan.adjacencyMatrix(unit)(neighbor) == 1)
-    }
-  }
-
   // unfinished
   "Unit" should "meet adjacency if no adjacent units between 2 years have been harvested " in {
-    val unit = rng.nextInt(plan.totalUnits)
-    val meetsAdjacency = plan.unitMeetsAdjacency(unit)
-    val neighborUnits = plan.getNeighborUnits(unit)
 
-    for(neighbor <- neighborUnits) {
-      assert(plan.adjacencyMatrix(unit)(neighbor) == 1)
+    val unit = rng.nextInt(plan.units)
+    val meetsAdjacency = plan.unitMeetsAdjacency(unit)
+
+    var cond = true
+
+    for (t <- 0 until plan.periods; i <- 0 until plan.units) {
+
+      if(plan.table(t)(i).x == 1){
+        val adj1 = i - 25
+        val adj2 = i - 1
+        val adj3 = i + 1
+        val adj4 = i + 25
+
+        if(adj1 >= 0) { if(plan.table(t)(adj1).x == 1) cond = false }
+        if(adj2 >= 0) { if(plan.table(t)(adj2).x == 1) cond = false }
+        if(adj3 < plan.units) { if(plan.table(t)(adj3).x == 1) cond = false }
+        if(adj3 < plan.units) { if(plan.table(t)(adj4).x == 1) cond = false }
+
+      }
     }
 
     assert(true)
   }
 
   "Neighbors" should "not be null or empty" in {
-    assert(plan.getNeighborPlans != null)
-    assert(plan.getNeighborPlans.size > 0)
+    assert(plan.neighborhood != null)
+    assert(plan.neighborhood.size > 0)
   }
 
   "Neighbors" should "only differ in one element" in {
     var counter = 0
     val table = plan.table
-    for(neighbor <- plan.getNeighborPlans) {
+    for(neighbor <- plan.neighborhood) {
       val nTable = neighbor.table
       for(i <- 0 until table.size) { if(table(i) != nTable(i)) counter += 1 }
     }

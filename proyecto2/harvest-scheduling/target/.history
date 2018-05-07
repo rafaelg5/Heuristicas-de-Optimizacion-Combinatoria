@@ -45,3 +45,11 @@ test
 compile
 test
 exit
+compile
+test
+exit
+compile
+doc
+clean
+cleanFiles
+exit
