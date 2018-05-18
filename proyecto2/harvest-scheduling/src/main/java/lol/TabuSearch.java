@@ -2,27 +2,16 @@ package lol;
 
 import java.util.LinkedList;
 
-public class TabuSearch {/*
-
-  private static ForestUnit[][] copyPlan(ForestUnit[][] arr){
-
-    ForestUnit[][] newArray = new ForestUnit[arr.length][arr[0].length];
-
-    for(int i=0; i<arr.length; i++)
-      for(int j=0; j<arr[i].length; j++)
-        newArray[i][j]= arr[i][j].copy();
-
-    return newArray;
-  }
+public class TabuSearch {
 
   /**
   *
-  *
+  */
   public static SchedulePlan run(int iterations, SchedulePlan plan) {
 
     SchedulePlan sBest = plan;
     int maxTabuSize = 15;
-    SchedulePlan bestCandidate = plan;
+    SchedulePlan bestCandidate = sBest;
     int i = 0;
 
     LinkedList<SchedulePlan> tabuList = new LinkedList<>();
@@ -30,14 +19,14 @@ public class TabuSearch {/*
 
     while(i < iterations){
 
-      val sNeighborhood = bestCandidate.neighborhood
-      bestCandidate = sNeighborhood(0)
-      for(sCandidate <- sNeighborhood) {
-
-        if(sCandidate.meetsSingularity && sCandidate.meetsAdjacency){
-          if(!tabuList.contains(sCandidate) &&
-            sCandidate.objective > bestCandidate.objective){
-              bestCandidate = new SchedulePlan(sCandidate.table)
+      LinkedList<int[][]> sNeighborhood = bestCandidate.neighborhood();
+      bestCandidate = new SchedulePlan(plan.getPlan(), sNeighborhood.get(0));
+      for(int[][] sCandidate : sNeighborhood) {
+        SchedulePlan aux = new SchedulePlan(plan.getPlan(), sCandidate);
+        if(aux.meetsSingularity() && aux.meetsAdjacency()){
+          if(!tabuList.contains(aux) &&
+            aux.objective() > bestCandidate.objective()){
+              bestCandidate = aux;
           }
         }
       }
@@ -50,5 +39,5 @@ public class TabuSearch {/*
       i++;
     }
     return sBest;
-  }*/
+  }
 }

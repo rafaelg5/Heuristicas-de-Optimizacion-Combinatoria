@@ -38,14 +38,15 @@ public class Parameters {
   }
 
   private static int[][] initDec(){
+    int[][] dec = new int[PERIODS][UNITS];
 
     // Asignar las variables de decisión para que cumplan la restricción de
     // singularidad
     for (int i = 0; i < UNITS; i++) {
       int pos = RNG.nextInt(PERIODS);
-      decisions[pos][i] = 1;
+      dec[pos][i] = 1;
     }
-    return decisions;
+    return dec;
   }
 
 }

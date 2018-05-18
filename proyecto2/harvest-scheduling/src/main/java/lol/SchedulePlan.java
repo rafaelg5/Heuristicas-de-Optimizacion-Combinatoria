@@ -13,19 +13,19 @@ public class SchedulePlan {
   private int units;
   private int periods;
 
-  public SchedulePlan(ForestUnit[][] plan){
+  public SchedulePlan(ForestUnit[][] plan, int[][] decisions){
     this.plan = plan;
     units = plan[0].length;
     periods = plan.length;
-    decisions = new int[periods][units];
-
-    for(int t = 0; t < periods; t++)
-      for (int i = 0; i < units; i++)
-        decisions[t][i] = plan[t][i].getX();
+    this.decisions = decisions;
   }
 
   public ForestUnit[][] getPlan(){
     return this.plan;
+  }
+
+  public int[][] getDecisions(){
+    return this.decisions;
   }
   /*
   * Función objetivo:
@@ -61,7 +61,7 @@ public class SchedulePlan {
     for (int i = 0; i < units; i++) {
       int total = 0;
       for(int j = 0; j < periods; j++)
-        total += plan[j][i].getX();
+        total += decisions[j][i];
 
       if(total > 1)
         return false;
@@ -83,45 +83,45 @@ public class SchedulePlan {
   }
 
 
-  private ForestUnit[][] copyPlan(ForestUnit[][] arr){
+  private int[][] copyDecisions(int[][] arr){
 
-    ForestUnit[][] newArray = new ForestUnit[arr.length][arr[0].length];
+    int[][] newArray = new int[arr.length][arr[0].length];
 
     for(int i=0; i<arr.length; i++)
       for(int j=0; j<arr[i].length; j++)
-        newArray[i][j]= arr[i][j].copy();
+        newArray[i][j]= arr[i][j];
 
     return newArray;
   }
 
   public void setDecision(int unit, int period, int value) {
-    plan[period][unit].setX(value);
+    decisions[period][unit] = value;
   }
 
   /**
   * Devuelve la vecindad (todas las posibles soluciones vecinas) del plan
   * @return las soluciones vecinas
   */
-  public LinkedList<SchedulePlan> neighborhood(){
+  public LinkedList<int[][]> neighborhood(){
 
-    LinkedList<SchedulePlan> neighbors = new LinkedList<>();
+    LinkedList<int[][]> neighbors = new LinkedList<>();
 
     for(int i = 0; i < units; i++){
 
       int period = getDecisionIndex(i);
       if(period != - 1) {
-        ForestUnit[][] newPlan = copyPlan(plan);
-        newPlan[period][i].setX(0);
-        neighbors.add(new SchedulePlan(newPlan));
+        int[][] newDec = copyDecisions(decisions);
+        newDec[period][i] = 0;
+        neighbors.add(newDec);
       }
 
       for(int t = 0; t < periods; t++){
 
         if(t != period) {
-          ForestUnit[][] newPlan = copyPlan(plan);
-          newPlan[t][i].setX(1);
-          newPlan[period][i].setX(0);
-          neighbors.add(new SchedulePlan(newPlan));
+          int[][] newDec = copyDecisions(decisions);
+          newDec[t][i] = 1;
+          newDec[period][i] = 0;
+          neighbors.add(newDec);
         }
       }
     }
@@ -139,7 +139,8 @@ public class SchedulePlan {
 
     for(int i = 0; i < units; i++){
       ForestUnit fUnit = plan[period][i];
-      mean += fUnit.getTimberVolume() * fUnit.getX();
+      int dec = decisions[period][i];
+      mean += fUnit.getTimberVolume() * dec;
     }
     mean /= units;
 
@@ -147,7 +148,8 @@ public class SchedulePlan {
 
     for(int i = 0; i < units; i++){
       ForestUnit fUnit = plan[period][i];
-      variance += Math.pow((fUnit.getTimberVolume() - mean)*fUnit.getX(), 2);
+      int dec = decisions[period][i];
+      variance += Math.pow((fUnit.getTimberVolume() - mean)*dec, 2);
     }
     return Math.sqrt(variance / units);
   }
@@ -176,7 +178,7 @@ public class SchedulePlan {
         double rev = fUnit.getRevenue();
         double lc = fUnit.getLoggingCost();
         int v = fUnit.getTimberVolume();
-        int x = fUnit.getX();
+        int x = decisions[t][i];
         /* ***************** */
 
         if((rev - lc) > 0 && x == 1)
@@ -221,7 +223,7 @@ public class SchedulePlan {
 
     int i = -1;
     for(int t = 0; t < periods; t++){
-      if(plan[t][u.getIndex()-1].getX() == 1)
+      if(decisions[t][u.getIndex()-1] == 1)
         i = t;
     }
     if(i == -1)

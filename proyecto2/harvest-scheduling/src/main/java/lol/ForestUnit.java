@@ -7,10 +7,6 @@ public class ForestUnit{
 
   private int index;
   private int period;
-  /* Variable de decisión 0, 1 donde la unidad con índice 'index' es talada
-  * en el periodo 'period'
-  */
-  private int x;
   // Edad promedio inicial de la unidad
   private int initialAge;
   // Edad promedio de los árboles en la unidad forestal
@@ -27,8 +23,8 @@ public class ForestUnit{
   // Ingreso por metro cúbico aplicando una tasa de interés del 8%
   private double revenue;
 
-  public ForestUnit(int index, int period, int decision, int unitAge, double loggingC){
-    initialize(index,period,decision);
+  public ForestUnit(int index, int period, int unitAge, double loggingC){
+    initialize(index,period);
     initialAge = unitAge;
     age = initialAge + period - 1;
     if(age < 15)
@@ -38,8 +34,8 @@ public class ForestUnit{
     loggingCost = loggingC;
   }
 
-  public ForestUnit(int index, int period, int decision, int unitAge){
-    initialize(index,period,decision);
+  public ForestUnit(int index, int period, int unitAge){
+    initialize(index,period);
     initialAge = unitAge;
     age = initialAge + period - 1;
     if(age < 15)
@@ -49,8 +45,8 @@ public class ForestUnit{
     loggingCost = calcLoggingCost();
   }
 
-  public ForestUnit(int index, int period, int decision){
-    initialize(index,period,decision);
+  public ForestUnit(int index, int period){
+    initialize(index,period);
     initialAge = calcInitialAge();
     age = initialAge + period - 1;
     if(age < 15)
@@ -60,10 +56,9 @@ public class ForestUnit{
     loggingCost = calcLoggingCost();
   }
 
-  private void initialize(int index, int period, int decision){
+  private void initialize(int index, int period){
     this.index = index;
     this.period = period;
-    x = decision;
     revenue = discountedPresentValue(LOG_PRICE, 8, period);
   }
 
@@ -99,14 +94,6 @@ public class ForestUnit{
     return period;
   }
 
-  public int getX(){
-    return this.x;
-  }
-
-  public void setX(int val){
-    x = val;
-  }
-
   public double getRevenue(){
     return revenue;
   }
@@ -124,19 +111,17 @@ public class ForestUnit{
   }
 
   /*
-  * Crea una nueva unidad a partir de la actual, modificando el periodo y la
-  * variable de decisión
+  * Crea una nueva unidad a partir de la actual, modificando el periodo
   * @param p el nuevo periodo
-  * @param decision el nuevo valor de la variable de decisión X
   * @return la nueva unidad forestal
   */
   public ForestUnit copyAndUpdate(int p){
-    ForestUnit newFU = new ForestUnit(index, p, x, initialAge);
+    ForestUnit newFU = new ForestUnit(index, p, initialAge);
     return newFU;
   }
 
   public ForestUnit copy(){
-    return new ForestUnit(index, period, x, initialAge, loggingCost);
+    return new ForestUnit(index, period, initialAge, loggingCost);
   }
 
   // DPV = FV * (1 + R/100)^-t

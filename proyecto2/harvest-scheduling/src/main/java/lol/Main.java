@@ -7,13 +7,13 @@ public class Main {
     Random rng = new Random();
 
     ForestUnit[][] iS = Parameters.INITIAL_SOLUTION;
+    int[][] iD = Parameters.DECISIONS;
 
-    SchedulePlan schedule = new SchedulePlan(iS);
+    SchedulePlan schedule = new SchedulePlan(iS, iD);
 
     System.out.println(schedule.objective());
     schedule.neighborhood();
-    System.out.println(schedule.objective());
-    //val bestSolution = TabuSearch.run(1, schedule)*/
-
+    SchedulePlan bestSolution = TabuSearch.run(10, schedule);
+    System.out.println(bestSolution.objective());
   }
 }
