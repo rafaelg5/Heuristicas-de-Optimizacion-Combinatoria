@@ -49,21 +49,10 @@ public class SchedulePlan {
   */
 
   public boolean meetsAdjacency(){
-    return true;
-  }
-
-  /**
-  * Revisa que las unidades cumplan la restricción de singularidad.
-  * @return true si cumple la restricción, false e.o.c
-  */
-  public boolean meetsSingularity() {
-
-    for (int i = 0; i < units; i++) {
-      int total = 0;
-      for(int j = 0; j < periods; j++)
-        total += decisions[j][i];
-
-      if(total > 1)
+    for(int i = 0; i < units; i++){
+      int t = getDecisionIndex(i);
+      if(t == -1) continue;
+      if(plan[t][i].getAge() < 19)
         return false;
     }
     return true;
@@ -120,7 +109,8 @@ public class SchedulePlan {
         if(t != period) {
           int[][] newDec = copyDecisions(decisions);
           newDec[t][i] = 1;
-          newDec[period][i] = 0;
+          if(period != -1)
+            newDec[period][i] = 0;
           neighbors.add(newDec);
         }
       }
@@ -135,21 +125,12 @@ public class SchedulePlan {
   */
   public double deviation(int period){
 
-    double mean = 0.0;
-
-    for(int i = 0; i < units; i++){
-      ForestUnit fUnit = plan[period][i];
-      int dec = decisions[period][i];
-      mean += fUnit.getTimberVolume() * dec;
-    }
-    mean /= units;
-
     double variance = 0.0;
 
     for(int i = 0; i < units; i++){
       ForestUnit fUnit = plan[period][i];
       int dec = decisions[period][i];
-      variance += Math.pow((fUnit.getTimberVolume() - mean)*dec, 2);
+      variance += Math.pow((fUnit.getTimberVolume() - Parameters.VOLUME_GOAL)*dec, 2);
     }
     return Math.sqrt(variance / units);
   }

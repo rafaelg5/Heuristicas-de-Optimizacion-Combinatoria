@@ -12,7 +12,8 @@ public class Parameters {
   public static final int UNITS = 625;
   public static final int PERIODS = 10;
   // Volumen deseado de madera (m^3 / ha) por periodo
-  public static final int volumeGoal = 25000;
+  public static final int VOLUME_GOAL = 25000;
+  public static final int ITERATIONS = 100;
   public static final ForestUnit[][] INITIAL_SOLUTION = initSol();
   public static final int[][] DECISIONS = initDec();
 

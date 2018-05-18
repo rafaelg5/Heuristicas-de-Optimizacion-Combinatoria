@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/src/main/java/lol/Main.java:16:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class val[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/src/main/java/lol/Main.java:15:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m  symbol:   variable ITERATIONS[0m
 [0m[[0m[31merror[0m] [0m[0m  location: class lol.Main[0m
-[0m[[0m[31merror[0m] [0m[0m    val bestSolution = TabuSearch.run(1, schedule);[0m
+[0m[[0m[31merror[0m] [0m[0m    SchedulePlan bestSolution = TabuSearch.run(ITERATIONS, schedule);[0m

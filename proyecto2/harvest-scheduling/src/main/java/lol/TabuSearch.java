@@ -23,7 +23,7 @@ public class TabuSearch {
       bestCandidate = new SchedulePlan(plan.getPlan(), sNeighborhood.get(0));
       for(int[][] sCandidate : sNeighborhood) {
         SchedulePlan aux = new SchedulePlan(plan.getPlan(), sCandidate);
-        if(aux.meetsSingularity() && aux.meetsAdjacency()){
+        if(aux.meetsAdjacency()){
           if(!tabuList.contains(aux) &&
             aux.objective() > bestCandidate.objective()){
               bestCandidate = aux;

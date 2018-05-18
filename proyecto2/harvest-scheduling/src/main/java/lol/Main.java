@@ -12,8 +12,8 @@ public class Main {
     SchedulePlan schedule = new SchedulePlan(iS, iD);
 
     System.out.println(schedule.objective());
-    schedule.neighborhood();
-    SchedulePlan bestSolution = TabuSearch.run(10, schedule);
+    SchedulePlan bestSolution = TabuSearch.run(Parameters.ITERATIONS, schedule);
     System.out.println(bestSolution.objective());
+    System.out.println(bestSolution);
   }
 }
