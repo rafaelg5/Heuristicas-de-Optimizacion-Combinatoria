@@ -1,10 +1,15 @@
 
-object Main extends App {
+object Main {
 
   val rng = scala.util.Random
   val p = Parameters
-  val solution = p.initial_solution
 
-  val schedule = new SchedulePlan(solution)
-  val bestSolution = TabuSearch.run(3000, schedule)
+  val schedule = new SchedulePlan(p.initialSolution)
+
+  val lol = new SchedulePlan(schedule.table)
+  println(schedule.objective)
+  schedule.neighborhood
+  println(schedule.objective)
+  //val bestSolution = TabuSearch.run(1, schedule)
+
 }

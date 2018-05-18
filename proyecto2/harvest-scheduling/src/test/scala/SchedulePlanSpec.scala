@@ -6,7 +6,7 @@ class SchedulePlanSpec extends FlatSpec with Matchers {
   var plan = new SchedulePlan(null)
 
   "Objective function" should "return a value > 0" in {
-    assert(plan.cost > 0)
+    assert(plan.objective > 0)
   }
 
   // unfinished

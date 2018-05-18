@@ -5,23 +5,31 @@ object TabuSearch {
   */
   def run(iterations: Int, plan: SchedulePlan): SchedulePlan = {
 
-    var sBest = plan
+    var sBest = new SchedulePlan(plan.table)
     val maxTabuSize = 15
-    var bestCandidate = plan
+    var bestCandidate = new SchedulePlan(plan.table)
     var i = 0
 
     var tabuList = scala.collection.mutable.ArrayBuffer.empty[SchedulePlan]
-    tabuList += plan
+    tabuList += sBest
 
     while(i < iterations){
+
       val sNeighborhood = bestCandidate.neighborhood
       bestCandidate = sNeighborhood(0)
       for(sCandidate <- sNeighborhood) {
-        if(tabuList.contains(sCandidate) && sCandidate.cost > bestCandidate.cost){
-          bestCandidate = sCandidate
+
+        if(sCandidate.meetsSingularity && sCandidate.meetsAdjacency){
+          if(!tabuList.contains(sCandidate) &&
+            sCandidate.objective > bestCandidate.objective){
+              bestCandidate = new SchedulePlan(sCandidate.table)
+          }
         }
+
       }
-      if(bestCandidate.cost > sBest.cost) sBest = bestCandidate
+      if(bestCandidate.objective > sBest.objective) {
+        sBest = new SchedulePlan(bestCandidate.table)
+      }
       tabuList += bestCandidate
       if(tabuList.size > maxTabuSize) tabuList.remove(0)
       i += 1
