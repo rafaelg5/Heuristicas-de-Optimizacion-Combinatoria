@@ -1,8 +1,5 @@
 package lol;
 
-import java.math.*;
-import java.util.Random;
-
 public class ForestUnit{
 
   private int index;
@@ -15,7 +12,6 @@ public class ForestUnit{
   private int timberVolume;
   // Costo de tala por metro cúbico
   private double loggingCost;
-  private final Random rng = new Random();
   // Superficie en hectáreas
   private final int SURFACE = 30;
   // Precio de madera por metro cúbico
@@ -34,98 +30,87 @@ public class ForestUnit{
     loggingCost = loggingC;
   }
 
-  public ForestUnit(int index, int period, int unitAge){
-    initialize(index,period);
-    initialAge = unitAge;
-    age = initialAge + period - 1;
-    if(age < 15)
-      timberVolume = 150;
-    else
-      timberVolume = Parameters.TIMBER_VOLUME[age - 15];
-    loggingCost = calcLoggingCost();
-  }
-
-  public ForestUnit(int index, int period){
-    initialize(index,period);
-    initialAge = calcInitialAge();
-    age = initialAge + period - 1;
-    if(age < 15)
-      timberVolume = 150;
-    else
-      timberVolume = Parameters.TIMBER_VOLUME[age - 15];
-    loggingCost = calcLoggingCost();
-  }
-
   private void initialize(int index, int period){
     this.index = index;
     this.period = period;
-    revenue = discountedPresentValue(LOG_PRICE, 8, period);
+    revenue = futureValue(LOG_PRICE, 8, period);
   }
 
-  private double calcLoggingCost(){
-    double totalVal = (20 + rng.nextInt(51)) + rng.nextDouble();
-    if(totalVal > 70)
-      return 70.0;
-    else {
-      BigDecimal bd = new BigDecimal(totalVal);
-      return bd.setScale(2, RoundingMode.HALF_UP).doubleValue();
-    }
-  }
-
-  private int calcInitialAge(){
-
-    if(index % 25 <= 5)
-      return 10 + rng.nextInt(6);
-
-    if(index % 25 >= 6 && index % 25 <= 10)
-      return 15 + rng.nextInt(6);
-
-    if(index % 25 >= 11 && index % 25 <= 15)
-      return 20 + rng.nextInt(6);
-
-    return  25 + rng.nextInt(6);
-  }
-
+  /**
+  * Obtiene el índice de esta unidad
+  * @return el índice
+  */
   public int getIndex(){
     return index;
   }
 
+  /**
+  * Obtiene el periodo de esta unidad
+  * @return el periodo
+  */
   public int getPeriod(){
     return period;
   }
 
+  /**
+  * Obtiene el ingreso ($) de esta unidad
+  * @return el ingreso
+  */
   public double getRevenue(){
     return revenue;
   }
 
+  /**
+  * Obtiene el costo de tala ($) de esta unidad
+  * @return el costo de tala
+  */
   public double getLoggingCost(){
     return loggingCost;
   }
 
+  /**
+  * Obtiene el volumen de madera (m^3 / ha) de esta unidad
+  * @return el volumen de madera
+  */
   public int getTimberVolume(){
     return timberVolume;
   }
 
+  /**
+  * Obtiene la edad de esta unidad
+  * @return la edad
+  */
   public int getAge(){
     return age;
   }
 
-  /*
+  /**
   * Crea una nueva unidad a partir de la actual, modificando el periodo
   * @param p el nuevo periodo
   * @return la nueva unidad forestal
   */
   public ForestUnit copyAndUpdate(int p){
-    ForestUnit newFU = new ForestUnit(index, p, initialAge);
+    ForestUnit newFU = new ForestUnit(index, p, initialAge, loggingCost);
     return newFU;
   }
 
+  /**
+  * Crea un nuevo objeto con los mismos valores de este
+  * @return una copia de este objeto
+  */
   public ForestUnit copy(){
     return new ForestUnit(index, period, initialAge, loggingCost);
   }
 
-  // DPV = FV * (1 + R/100)^-t
-  public static double discountedPresentValue(double initialAmount, int R, int p){
-    return initialAmount * Math.pow(1+R/100.0,-1*p);
+  /**
+  * Calcula el valor en el futuro de cierta cantidad con una tasa de descuento
+  * FV = PV * (1 + r)^n
+  * @param initialAmount el valor presente
+  * @param discountRate la tasa de descuento
+  * @param period el periodo o número de años
+  * @return el valor en el futuro de esta cantidad
+  */
+  public static double futureValue(double initialAmount, int discountRate, int period){
+    return initialAmount * Math.pow(1.0 + (discountRate / 100.0), period);
   }
 }

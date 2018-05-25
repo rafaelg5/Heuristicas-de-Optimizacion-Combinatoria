@@ -1,40 +1,65 @@
 [0m[[0m[0minfo[0m] [0m[0mLoading project definition from /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/project[0m
 [0m[[0m[0minfo[0m] [0m[0mLoading settings from build.sbt ...[0m
 [0m[[0m[0minfo[0m] [0m[0mSet current project to Harvest-Scheduling (in build file:/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/)[0m
-[0m[[0m[0minfo[0m] [0m[0mCompiling 1 Java source to /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/target/scala-2.12/classes ...[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling 2 Java sources to /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/target/scala-2.12/classes ...[0m
 [0m[[0m[0minfo[0m] [0m[0mDone compiling.[0m
 [0m[[0m[0minfo[0m] [0m[0mPackaging /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/target/scala-2.12/harvest-scheduling_2.12-0.1.0-SNAPSHOT.jar ...[0m
 [0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m
 [0m[[0m[0minfo[0m] [0m[0mRunning lol.Main [0m
-1296079.557243538
-[0m[[0m[31merror[0m] [0m[0m(run-main-0) java.lang.ArrayIndexOutOfBoundsException: -1[0m
-[0m[[0m[31merror[0m] [0m[0mjava.lang.ArrayIndexOutOfBoundsException: -1[0m
-[0m[[0m[31merror[0m] [0m[0m	at lol.SchedulePlan.meetsAdjacency(SchedulePlan.java:54)[0m
-[0m[[0m[31merror[0m] [0m[0m	at lol.TabuSearch.run(TabuSearch.java:26)[0m
-[0m[[0m[31merror[0m] [0m[0m	at lol.Main.main(Main.java:15)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.lang.reflect.Method.invoke(Method.java:498)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Run.invokeMain(Run.scala:93)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Run.run0(Run.scala:87)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Run.execute$1(Run.scala:65)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Run.$anonfun$run$4(Run.scala:77)[0m
-[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:12)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.util.InterfaceUtil$$anon$1.get(InterfaceUtil.scala:10)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.TrapExit$App.run(TrapExit.scala:252)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.lang.Thread.run(Thread.java:748)[0m
-[0m[[0m[31merror[0m] [0m[0mjava.lang.RuntimeException: Nonzero exit code: 1[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Run$.executeTrapExit(Run.scala:124)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Run.run(Run.scala:77)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Defaults$.$anonfun$bgRunTask$5(Defaults.scala:1169)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Defaults$.$anonfun$bgRunTask$5$adapted(Defaults.scala:1164)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.BackgroundThreadPool.$anonfun$run$1(DefaultBackgroundJobService.scala:366)[0m
-[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:12)[0m
-[0m[[0m[31merror[0m] [0m[0m	at scala.util.Try$.apply(Try.scala:209)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.BackgroundThreadPool$BackgroundRunnable.run(DefaultBackgroundJobService.scala:289)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.lang.Thread.run(Thread.java:748)[0m
-[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) Nonzero exit code: 1[0m
-[0m[[0m[31merror[0m] [0m[0mTotal time: 4 s, completed May 18, 2018 10:01:24 AM[0m
+Inicial: 37472430.97
+
+Periodo 10
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|24|24|00|00|00|00|00|00|00|05|00|00|06|00|03|09|06|00|24|00|04|03|05|00|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|03|00|01|03|00|01|00|00|00|00|00|02|00|00|00|06|00|00|00|24|00|25|00|00|02|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|09|03|00|24|09|07|00|04|00|00|00|00|00|00|01|02|00|00|03|00|00|00|03|06|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|09|00|00|00|08|02|04|04|00|09|00|08|09|00|05|00|00|00|00|00|00|00|08|00|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|05|05|01|06|05|00|00|02|02|00|01|07|00|00|00|01|00|00|03|00|00|00|00|02|04|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|00|00|00|00|00|00|09|00|00|00|00|00|01|03|00|02|06|05|00|00|09|06|00|24|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|00|00|03|00|00|04|06|00|00|00|00|07|00|00|00|00|00|00|24|03|00|00|01|03|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|03|00|05|00|24|00|00|05|00|01|01|02|24|00|03|02|09|25|24|00|00|04|00|05|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|00|03|00|00|00|00|00|03|01|00|00|04|00|00|04|05|24|09|00|00|00|00|04|25|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|00|00|04|05|02|25|00|00|03|00|00|05|00|00|00|00|00|00|00|25|24|00|02|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|24|25|03|09|00|00|00|00|00|00|00|08|00|01|26|00|00|02|00|06|00|01|00|00|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|00|26|00|00|01|00|00|00|01|03|00|02|00|26|00|05|02|01|00|02|25|25|00|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|01|00|00|26|05|00|01|00|00|00|00|04|00|02|00|00|00|00|05|00|24|00|24|00|01|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|04|00|00|00|01|00|26|00|03|25|26|00|01|00|06|26|00|00|00|00|00|00|07|25|06|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|04|00|01|00|01|01|03|00|00|00|00|00|00|07|00|04|00|26|00|00|04|00|00|26|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|00|00|00|05|01|00|02|00|00|26|25|08|25|00|00|25|24|06|06|26|00|00|00|05|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|00|00|00|00|00|00|00|00|00|00|00|00|09|00|07|06|00|07|09|00|01|02|01|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|00|00|00|24|25|00|00|07|03|00|05|00|02|00|00|00|02|00|02|00|05|09|01|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|01|00|00|00|00|26|00|04|00|00|04|00|24|03|06|04|00|00|05|01|00|09|00|26|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|00|00|04|08|02|00|00|26|00|08|24|07|00|02|03|25|00|00|00|02|00|00|00|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|00|00|25|00|00|04|00|00|03|03|00|00|00|00|09|26|00|24|02|00|00|00|05|00|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|26|00|05|00|06|02|00|08|00|24|00|00|03|00|00|00|00|04|00|00|09|00|00|00|04|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|05|09|04|00|00|02|05|00|06|00|00|02|04|06|02|00|00|00|04|00|01|00|00|05|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|24|06|00|00|05|00|00|00|06|03|00|04|03|08|25|00|00|00|00|00|00|25|00|25|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|01|00|00|00|00|00|01|04|00|26|02|09|09|04|00|00|00|00|00|00|04|04|00|00|00|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+
+Mejor solución: 131450590.16
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 284 s, completed May 23, 2018 9:29:22 AM[0m

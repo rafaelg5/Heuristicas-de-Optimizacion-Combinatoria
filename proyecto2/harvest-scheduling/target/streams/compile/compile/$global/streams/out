@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/src/main/java/lol/Main.java:15:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   variable ITERATIONS[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class lol.Main[0m
-[0m[[0m[31merror[0m] [0m[0m    SchedulePlan bestSolution = TabuSearch.run(ITERATIONS, schedule);[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/src/main/java/lol/Parameters.java:35:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m  symbol:   variable RoundingMode[0m
+[0m[[0m[31merror[0m] [0m[0m  location: class lol.Parameters[0m
+[0m[[0m[31merror[0m] [0m[0m        totalVal = bd.setScale(2, RoundingMode.HALF_UP).doubleValue();[0m
