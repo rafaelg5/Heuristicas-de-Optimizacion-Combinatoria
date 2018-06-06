@@ -6,9 +6,8 @@ import java.math.RoundingMode;
 
 public class Parameters {
 
-  private static final Random RNG0 = new Random();
-  //public static final int SEED = RNG0.nextInt();
-  public static final int SEED = 1;
+  private static final Random RNG0 = new Random(5);
+  public static final int SEED = 196959867;
   public static final Random RNG = new Random(SEED);
   public static final int[] TIMBER_VOLUME = {190, 215, 233, 261, 278, 311, 337,
     363, 390, 417, 443, 470, 499, 527, 554, 581, 607, 633, 658, 682, 706, 748,
@@ -19,7 +18,7 @@ public class Parameters {
   public static final int PERIODS = 10;
   // Volumen deseado de madera (m^3 / ha) por periodo
   public static final int VOLUME_GOAL = 20000;
-  public static final int ITERATIONS = 1;
+  public static final int ITERATIONS = 2730;
   public static final ForestUnit[][] INITIAL_SOLUTION = initSol();
   public static final int[][] DECISIONS = initDec();
 
@@ -29,7 +28,7 @@ public class Parameters {
     for (int i = 0; i < UNITS; i++){
 
       // Costo de tala por metro cúbico entre $20.00 y $70.00
-      double totalVal = (20 + RNG.nextInt(51)) + RNG.nextDouble();
+      double totalVal = (20 + RNG0.nextInt(51)) + RNG0.nextDouble();
       if(totalVal > 70)
         totalVal = 70.0;
       else {
@@ -37,7 +36,7 @@ public class Parameters {
         totalVal = bd.setScale(2, RoundingMode.HALF_UP).doubleValue();
       }
       // Valor de la edad inicial de la unidad entre 15 y 30 años
-      forest[i] = new ForestUnit(i+1,1, 15 + RNG.nextInt(16), totalVal);
+      forest[i] = new ForestUnit(i+1,1, 15 + RNG0.nextInt(16), totalVal);
     }
 
     // Solución inicial para el problema

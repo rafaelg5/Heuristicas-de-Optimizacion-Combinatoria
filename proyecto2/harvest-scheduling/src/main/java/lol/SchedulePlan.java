@@ -81,7 +81,10 @@ public class SchedulePlan {
         sum2 += decisions[t][unit - 25];
       }
 
-    return (sum1 + sum2 + 4*decisions[period][unit]*sum2 + sum1) <= 4;
+    boolean cond1 = (sum1 + sum2 + 4*decisions[period][unit]*sum2 + sum1) <= 4;
+    boolean cond2 = plan[period][unit].getAge() >= 19;
+
+    return cond1 && cond2;
   }
 
   /*
@@ -98,6 +101,13 @@ public class SchedulePlan {
     return newArray;
   }
 
+  public int getUnitDecisionIndex(int unit) {
+    for(int t = 0; t < periods; t++){
+      if(decisions[t][unit] == 1) return t;
+    }
+    return -1;
+  }
+
   /**
   * Calcula la función objetivo que queremos maximizar. Las variables a tomar en
   * cuenta son: ingreso (por unidad y periodo), costo de tala (por unidad y
@@ -110,26 +120,13 @@ public class SchedulePlan {
 
     double total = 0.0;
 
-    for(int t = 0; t < periods; t++) {
-
-      double sum = 0.0;
-
-      for(int i = 0; i < units; i++) {
-
-        /* *** variables del plan *** */
-        ForestUnit fUnit = plan[t][i];
-        double rev = fUnit.getRevenue();
-        double lc = fUnit.getLoggingCost();
-        int v = fUnit.getTimberVolume();
-        int x = decisions[t][i];
-        /* ************************* */
-
-        if((rev - lc) > 0 && x == 1)
-          sum += (rev - lc) * v;
-      }
-
-      total += sum;
+    for(int i = 0; i < units; i++){
+      int t = getUnitDecisionIndex(i);
+      if(t == -1)
+        continue;
+      total += unitNetRevenue(i, t);
     }
+    
     return total;
   }
 

@@ -17,10 +17,16 @@ public class TabuSearch {
     * núm. iteraciones: 250
     * volumen de cada periodo >= VOLUME_GOAL * 1.1
     */
-
     Random rng = Parameters.RNG;
     SchedulePlan bestSolution = s;
     int count = 0;
+
+    double bestObjective = bestSolution.objective();
+
+    /* ArrayList con los índices de las unidades para utilizar en el random. */
+    ArrayList<Integer> uI = new ArrayList<>();
+    for(int i = 0; i < units; i++)
+      uI.add(i);
 
     for(int iter = 0; iter < 250; iter ++){
 
@@ -31,13 +37,8 @@ public class TabuSearch {
       * el periodo en que es talado, si el valor es -1 esa unidad no se taló */
       int[] unitsPeriods = new int[units];
       Arrays.fill(unitsPeriods, -1);
-      /* ******************************************************************* */
 
-      /* ArrayList con los índices de las unidades para utilizar en el random. */
-      ArrayList<Integer> unitsIndexes = new ArrayList<>();
-      for(int i = 0; i < units; i++)
-        unitsIndexes.add(i);
-      /* ********************************************************************* */
+      ArrayList<Integer> unitsIndexes = new ArrayList<>(uI);
 
       for(int t = 0; t < periods; t++){
         int volume = 0;
@@ -71,7 +72,14 @@ public class TabuSearch {
       }
 
       SchedulePlan newS = new SchedulePlan(s.getPlan(), decisions);
-      if(newS.objective() > bestSolution.objective()) bestSolution = newS;
+      double newObjective = newS.objective();
+
+      /* Si el nuevo objetivo es mayor que el mejor, actualiza el mejor con
+         el nuevo. */
+      if(newObjective > bestObjective){
+        bestSolution = newS;
+        bestObjective = newObjective;
+      }
     }
 
     return bestSolution;
@@ -85,45 +93,72 @@ public class TabuSearch {
   */
   public static SchedulePlan run(int iterations, SchedulePlan schedule) {
 
-    //SchedulePlan sBest = plan;
+    /* Tamaño de la lista tabú */
     int maxTabuSize = 100;
-    //SchedulePlan bestCandidate = sBest;
-    //int i = 0;
-
     int periods = schedule.getPlan().length;
     int units = schedule.getPlan()[0].length;
 
-    SchedulePlan initSol = monteCarlo(units, periods, schedule);
-    double scheduleObjective = initSol.objective();
+    /* Solución inicial usando el algoritmo de Monte Carlo */
+    SchedulePlan best = monteCarlo(units, periods, schedule);
 
-    int[][] decisions = initSol.getDecisions();
+    double bestObjective = best.objective();
+
+    /* Inicializar el mejor candidato con la solución inicial */
+    SchedulePlan bestCandidate =
+      new SchedulePlan(best.getPlan(), best.getDecisions());
+
+    double bestCObjective = bestCandidate.objective();
 
     LinkedList<SchedulePlan> tabuList = new LinkedList<>();
-    //tabuList.add(sBest);
 
-    /*
-    for(int shock = 0; shock < 6; shock++){
-      for(int it = 0; it < iterations; it++){
-        int bestUnit = 0;
-        int bestPeriod = 0;
-        for(int i = 0; i < units; i++){
-          for(int t = 0; t < periods; t++){
-            if(schedule.unitMeetsAdjacency(i, t)){
-              double unitRev = schedule.unitNetRevenue(i, t);
-              double currUnitRev = schedule.currentUnitRevenue(t);
-              double newObjective = scheduleObjective - currUnitRev + unitRev;
-              if(newObjective > scheduleObjective){
-                bestUnit = i;
-                bestPeriod = t;
-              } else {
+    for(int it = 0; it < iterations; it++){
 
-              }
+      for(int i = 0; i < units; i++){
+
+        for(int t = 0; t < periods; t++){
+
+          int[][] newCDec = bestCandidate.getDecisions();
+
+          int index = bestCandidate.getUnitDecisionIndex(i);
+          if(t == index) continue;
+
+          newCDec[t][i] = 1;
+
+          if(index != -1){
+            newCDec[index][i] = 0;
+          }
+
+          SchedulePlan newCandidate = new SchedulePlan(bestCandidate.getPlan(),
+            newCDec);
+
+          if(newCandidate.unitMeetsAdjacency(i, t)){
+
+            double obj = index != -1 ?
+              bestCObjective - bestCandidate.unitNetRevenue(i, index) : bestCObjective;
+
+            double unitRev = newCandidate.unitNetRevenue(i, t);
+
+            double newObjective = obj + unitRev;
+
+            if(newObjective > bestCObjective && !tabuList.contains(newCandidate)){
+              bestCandidate = newCandidate;
+              bestCObjective = newObjective;
             }
           }
         }
       }
-    }*/
 
-    return initSol;
+      if(bestCObjective > bestObjective){
+        best = bestCandidate;
+        bestObjective = bestCObjective;
+      }
+      tabuList.add(bestCandidate);
+
+      if(tabuList.size() > maxTabuSize){
+        tabuList.remove(0);
+      }
+    }
+
+    return best;
   }
 }

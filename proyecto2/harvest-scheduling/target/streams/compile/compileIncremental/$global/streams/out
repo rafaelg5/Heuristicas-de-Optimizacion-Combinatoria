@@ -15,10 +15,10 @@
 [0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(lol.SchedulePlan)[0m
 [0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/src/main/java/lol/SchedulePlan.java)[0m
 [0m[[0m[0minfo[0m] [0m[0mCompiling 1 Java source to /home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/target/scala-2.12/classes ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@1d1cc7e8 directly...[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.055126903 s[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.010725706 s[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 0.067296194 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@46b34c89 directly...[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.362865236 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.048082132 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 0.417123102 s[0m
 [0m[[0m[0minfo[0m] [0m[0mDone compiling.[0m
 [0m[[0m[0mdebug[0m] [0m[0mNew invalidations:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Set()[0m
