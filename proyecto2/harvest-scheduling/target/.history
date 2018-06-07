@@ -227,3 +227,11 @@ exit
 compile
 run
 exit
+compile
+exit
+run
+compile
+clean
+cleanFiles
+doc
+run

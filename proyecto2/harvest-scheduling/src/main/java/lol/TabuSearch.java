@@ -99,7 +99,7 @@ public class TabuSearch {
     int periods = schedule.getPlan().length;
     int units = schedule.getPlan()[0].length;
 
-    /* Solución inicial usando el algoritmo de Monte Carlo */
+    /* Solución inicial usando el algoritmo de Monte Carlo */    
     SchedulePlan best = monteCarlo(units, periods, schedule, seed);
 
     double bestObjective = best.objective();
