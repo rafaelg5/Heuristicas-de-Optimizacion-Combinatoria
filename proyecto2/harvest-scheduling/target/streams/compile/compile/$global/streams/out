@@ -1,2 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/src/main/java/lol/SchedulePlan.java:152:1: ';' expected[0m
-[0m[[0m[31merror[0m] [0m[0m      total += unitNetRevenue(i, t)[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/src/main/java/lol/Main.java:17:1: SEED_NUM has private access in lol.Parameters[0m
+[0m[[0m[31merror[0m] [0m[0m    } while(initial + Parameters.SEED_NUM >= Integer.MAX_VALUE);[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rgarcia/Documents/Carrera/Heuristicas-de-Optimizacion-Combinatoria/proyecto2/harvest-scheduling/src/main/java/lol/Main.java:22:1: SEED_NUM has private access in lol.Parameters[0m
+[0m[[0m[31merror[0m] [0m[0m    for (int i = initial; i < initial + Parameters.SEED_NUM; i++) {[0m

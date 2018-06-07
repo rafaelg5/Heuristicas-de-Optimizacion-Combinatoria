@@ -11,13 +11,14 @@ public class TabuSearch {
   * Crea una solución inicial para utilizar en la Búsqueda Tabú utilizando el
   * algoritmo de programación entera de Monte Carlo con parámetros especiales.
   */
-  private static SchedulePlan monteCarlo(int units, int periods, SchedulePlan s){
+  private static SchedulePlan monteCarlo(int units, int periods, SchedulePlan s,
+    int seed){
 
     /* Los parámetros especiales son:
     * núm. iteraciones: 250
     * volumen de cada periodo >= VOLUME_GOAL * 1.1
     */
-    Random rng = Parameters.RNG;
+    Random rng = new Random(seed);
     SchedulePlan bestSolution = s;
     int count = 0;
 
@@ -91,7 +92,7 @@ public class TabuSearch {
   * @param schedule la solución inicial
   * @return una solución factible
   */
-  public static SchedulePlan run(int iterations, SchedulePlan schedule) {
+  public static SchedulePlan run(int iterations, SchedulePlan schedule, int seed) {
 
     /* Tamaño de la lista tabú */
     int maxTabuSize = 100;
@@ -99,7 +100,7 @@ public class TabuSearch {
     int units = schedule.getPlan()[0].length;
 
     /* Solución inicial usando el algoritmo de Monte Carlo */
-    SchedulePlan best = monteCarlo(units, periods, schedule);
+    SchedulePlan best = monteCarlo(units, periods, schedule, seed);
 
     double bestObjective = best.objective();
 

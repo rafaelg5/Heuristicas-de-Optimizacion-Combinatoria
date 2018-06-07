@@ -6,9 +6,9 @@ import java.math.RoundingMode;
 
 public class Parameters {
 
+  public static final int SEED_NUM = 1;
   private static final Random RNG0 = new Random(5);
-  public static final int SEED = 196959867;
-  public static final Random RNG = new Random(SEED);
+  //public static final int SEED = 196959867;
   public static final int[] TIMBER_VOLUME = {190, 215, 233, 261, 278, 311, 337,
     363, 390, 417, 443, 470, 499, 527, 554, 581, 607, 633, 658, 682, 706, 748,
     771, 794, 818, 842};
@@ -20,7 +20,6 @@ public class Parameters {
   public static final int VOLUME_GOAL = 20000;
   public static final int ITERATIONS = 2730;
   public static final ForestUnit[][] INITIAL_SOLUTION = initSol();
-  public static final int[][] DECISIONS = initDec();
 
   private static ForestUnit[][] initSol(){
     // Genera las unidades con sus valores iniciales del bosque del primer periodo
@@ -52,20 +51,6 @@ public class Parameters {
     }
 
     return solution;
-  }
-
-  private static int[][] initDec(){
-    int[][] dec = new int[PERIODS][UNITS];
-
-    // Asignar las variables de decisión para que cumplan la restricción de
-    // singularidad
-    for (int i = 0; i < UNITS; i++) {
-      int pos = RNG.nextInt(PERIODS);
-      float prob = RNG.nextFloat();
-      if(prob < 0.5)
-        dec[pos][i] = 1;
-    }
-    return dec;
   }
 
 }

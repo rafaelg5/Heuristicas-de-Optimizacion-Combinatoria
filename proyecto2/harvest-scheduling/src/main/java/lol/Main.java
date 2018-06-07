@@ -1,27 +1,30 @@
 package lol;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
   public static void main(String[] args) {
 
+    Random rng = new Random();
+
     // Matriz de las unidades del bosque
-    long startTime = System.nanoTime();
     ForestUnit[][] iS = Parameters.INITIAL_SOLUTION;
 
-    int[][] iD = Parameters.DECISIONS;
+    int initial = 196959867;
+    /*
+    do {
+      initial = rng.nextInt();
+    } while(initial + Parameters.SEED_NUM >= Integer.MAX_VALUE);*/
 
-    SchedulePlan schedule = new SchedulePlan(iS, iD);
-    System.out.println("Semilla: " + Parameters.SEED);
-    //System.out.println();
-    //System.out.println(schedule);
-    System.out.printf("Inicial: %.2f\n", schedule.objective());
+    // Grupo de hilos
+    ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
 
-    SchedulePlan bestSolution = TabuSearch.run(Parameters.ITERATIONS, schedule);
+    for (int i = initial; i < initial + Parameters.SEED_NUM; i++) {
+      Runnable hs = new HarvestScheduling(iS, i);
+      executor.execute(hs);
+    }
+    executor.shutdown();
 
-    //System.out.println(bestSolution);
-    System.out.printf("Mejor solución: %.2f\n", bestSolution.objective());
-    long endTime = System.nanoTime();
-    long totalTime = endTime - startTime;
-    System.out.printf("Tiempo total: %.2f\n", totalTime / 1000000000.0);
   }
 }

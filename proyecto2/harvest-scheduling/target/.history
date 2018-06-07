@@ -224,3 +224,6 @@ compile
 run
 compile
 exit
+compile
+run
+exit
