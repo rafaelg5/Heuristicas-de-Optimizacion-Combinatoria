@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 
 public class Parameters {
 
-  public static final int SEED_NUM = 1;
+  public static final int SEED_NUM = 1000;
   private static final Random RNG0 = new Random(5);
   //public static final int SEED = 196959867;
   public static final int[] TIMBER_VOLUME = {190, 215, 233, 261, 278, 311, 337,
@@ -18,7 +18,7 @@ public class Parameters {
   public static final int PERIODS = 10;
   // Volumen deseado de madera (m^3 / ha) por periodo
   public static final int VOLUME_GOAL = 20000;
-  public static final int ITERATIONS = 2730;
+  public static final int ITERATIONS = 3000;
   public static final ForestUnit[][] INITIAL_SOLUTION = initSol();
 
   private static ForestUnit[][] initSol(){

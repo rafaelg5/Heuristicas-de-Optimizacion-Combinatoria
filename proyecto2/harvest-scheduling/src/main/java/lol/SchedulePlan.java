@@ -10,6 +10,15 @@ public class SchedulePlan {
   private int units;
   private int periods;
 
+  private final String COLOR1 = "rgb(153, 102, 0)";
+  private final String COLOR2 = "rgb(204, 153, 0)";
+  private final String COLOR3 = "rgb(204, 204, 0)";
+  private final String COLOR4 = "rgb(153, 204, 0)";
+  private final String COLOR5 = "rgb(0, 153, 0)";
+  private final String COLOR6 = "rgb(102, 153, 0)";
+  private final String COLOR7 = "rgb(51, 102, 0)";
+  private final String COLOR8 = "rgb(0, 51, 0)";
+
   /**
   * Construye un nuevo plan para agendar con una matriz de unidades forestales
   * y una matriz de variables de decisión
@@ -126,7 +135,7 @@ public class SchedulePlan {
         continue;
       total += unitNetRevenue(i, t);
     }
-    
+
     return total;
   }
 
@@ -175,6 +184,142 @@ public class SchedulePlan {
       }
     }
     return s;
+  }
+
+  public String toSVG(){
+
+    int height = 50;
+    int width = 50;
+
+    String iPeriod =
+      String.format("\n<text x='%d' y='%d' fill='%s'>Periodo inicial</text>\n",
+      0, 15, "black");
+
+    String iRects = "";
+
+    int t = 0;
+
+    for(int i = 0; i < units; i++){
+      ForestUnit unit = plan[t][i];
+      int age = getUnitCurrentAge(unit);
+
+      String unitColor = "";
+      if(age <= 4){
+        unitColor = COLOR1;
+      } else if(age <= 9){
+        unitColor = COLOR2;
+      } else if(age <= 14){
+        unitColor = COLOR3;
+      } else if(age <= 19){
+        unitColor = COLOR4;
+      } else if(age <= 24){
+        unitColor = COLOR5;
+      } else if(age <= 29){
+        unitColor = COLOR6;
+      } else if(age <= 34){
+        unitColor = COLOR7;
+      } else {
+        unitColor = COLOR8;
+      }
+
+      int x = (i % (int)Math.sqrt(units)) * width;
+      int y = 30 + ((i / (int)Math.sqrt(units)) * 50);
+
+      iRects += String.format("<rect x='%d' y='%d' width='%d' height='%d' style=\"fill:%s; stroke-width:1; stroke:rgb(0,0,0)\" />\n",
+                            x, y, width, height, unitColor);
+    }
+
+    int newSY = (50 * (int)Math.sqrt(units)) + 45;
+    String fPeriod =
+      String.format("\n<text x='%d' y='%d' fill='%s'>Periodo final</text>\n",
+      0, newSY , "black");
+
+    String fRects = "";
+
+    t = 9;
+
+    for(int i = 0; i < units; i++){
+      ForestUnit unit = plan[t][i];
+      int age = getUnitCurrentAge(unit);
+
+      String unitColor = "";
+      if(age <= 4){
+        unitColor = COLOR1;
+      } else if(age <= 9){
+        unitColor = COLOR2;
+      } else if(age <= 14){
+        unitColor = COLOR3;
+      } else if(age <= 19){
+        unitColor = COLOR4;
+      } else if(age <= 24){
+        unitColor = COLOR5;
+      } else if(age <= 29){
+        unitColor = COLOR6;
+      } else if(age <= 34){
+        unitColor = COLOR7;
+      } else {
+        unitColor = COLOR8;
+      }
+
+      int x = (i % (int)Math.sqrt(units)) * width;
+      int y = 30 + ((i / (int)Math.sqrt(units)) * 50) + newSY;
+
+      fRects += String.format("<rect x='%d' y='%d' width='%d' height='%d' style=\"fill:%s; stroke-width:1; stroke:rgb(0,0,0)\" />\n",
+                            x, y, width, height, unitColor);
+    }
+
+    int sX = 0;
+    newSY += (50 * (int)Math.sqrt(units)) + 45 + 100;
+
+    String classes = "";
+    classes += String.format("\n<rect x='%d' y='%d' width='20' height='20' style=\"fill:%s;stroke-width:1;stroke:%s\"/>\n",sX,newSY,COLOR1,COLOR1);
+    classes += String.format("\n<text x='%d' y='%d' fill='black'>0-4 años</text>\n",sX+25,newSY+15);
+
+    sX += 110;
+
+    classes += String.format("\n<rect x='%d' y='%d' width='20' height='20' style=\"fill:%s;stroke-width:1;stroke:%s\"/>\n",sX,newSY,COLOR2, COLOR2);
+    classes += String.format("\n<text x='%d' y='%d' fill='black'>5-9 años</text>\n",sX+25,newSY+15);
+
+    sX += 110;
+
+    classes += String.format("\n<rect x='%d' y='%d' width='20' height='20' style=\"fill:%s;stroke-width:1;stroke:%s\"/>\n",sX,newSY,COLOR3, COLOR3);
+    classes += String.format("\n<text x='%d' y='%d' fill='black'>10-14 años</text>\n",sX+25,newSY+15);
+
+    sX += 110;
+
+    classes += String.format("\n<rect x='%d' y='%d' width='20' height='20' style=\"fill:%s;stroke-width:1;stroke:%s\"/>\n",sX,newSY,COLOR4, COLOR4);
+    classes += String.format("\n<text x='%d' y='%d' fill='black'>15-19 años</text>\n",sX+25,newSY+15);
+
+    sX += 110;
+
+    classes += String.format("\n<rect x='%d' y='%d' width='20' height='20' style=\"fill:%s;stroke-width:1;stroke:%s\"/>\n",sX,newSY,COLOR5, COLOR5);
+    classes += String.format("\n<text x='%d' y='%d' fill='black'>20-24 años</text>\n",sX+25,newSY+15);
+
+    sX += 110;
+
+    classes += String.format("\n<rect x='%d' y='%d' width='20' height='20' style=\"fill:%s;stroke-width:1;stroke:%s\"/>\n",sX,newSY,COLOR6, COLOR6);
+    classes += String.format("\n<text x='%d' y='%d' fill='black'>25-29 años</text>\n",sX+25,newSY+15);
+
+    sX += 110;
+
+    classes += String.format("\n<rect x='%d' y='%d' width='20' height='20' style=\"fill:%s;stroke-width:1;stroke:%s\"/>\n",sX,newSY,COLOR7, COLOR7);
+    classes += String.format("\n<text x='%d' y='%d' fill='black'>30-34 años</text>\n",sX+25,newSY+15);
+
+    sX += 110;
+
+    classes += String.format("\n<rect x='%d' y='%d' width='20' height='20' style=\"fill:%s;stroke-width:1;stroke:%s\"/>\n",sX,newSY,COLOR8, COLOR8);
+    classes += String.format("\n<text x='%d' y='%d' fill='black'>35-40 años</text>\n",sX+25,newSY+15);
+
+
+    String svg = "<!DOCTYPE html>\n<html>\n<body>\n<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='"+(50 * (int)Math.sqrt(units))+
+                 "' height='2710'>" +
+  	             "\n<g>"+ iPeriod + iRects +"\n</g>\n" +
+                 "\n<g>"+ fPeriod + fRects +"\n</g>\n" +
+                 "\n<g>" + classes + "\n</g>" +
+                 "\n</svg>\n</body>\n</html>";
+
+    return svg;
+
   }
 
   /*

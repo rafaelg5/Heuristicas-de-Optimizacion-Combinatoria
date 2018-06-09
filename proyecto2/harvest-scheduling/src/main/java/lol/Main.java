@@ -11,16 +11,26 @@ public class Main {
     // Matriz de las unidades del bosque
     ForestUnit[][] iS = Parameters.INITIAL_SOLUTION;
 
-    int initial = 196959867;
-    /*
-    do {
-      initial = rng.nextInt();
-    } while(initial + Parameters.SEED_NUM >= Integer.MAX_VALUE);*/
+    int seedNum = 0;
+
+    if(args.length == 0)
+      seedNum = Parameters.SEED_NUM;
+    else if(args.length == 1 || args.length == 2)
+      seedNum = Integer.parseInt(args[0]);
+
+    int initial = 0;
+    if(args.length == 2)
+      initial = Integer.parseInt(args[1]);
+    else {
+      do {
+        initial = rng.nextInt();
+      } while(initial + seedNum >= Integer.MAX_VALUE);
+    }
 
     // Grupo de hilos
-    ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
+    ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
-    for (int i = initial; i < initial + Parameters.SEED_NUM; i++) {
+    for (int i = initial; i < initial + seedNum; i++) {
       Runnable hs = new HarvestScheduling(iS, i);
       executor.execute(hs);
     }

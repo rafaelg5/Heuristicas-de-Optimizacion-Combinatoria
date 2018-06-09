@@ -1,6 +1,8 @@
 package lol;
 
 import java.util.Random;
+import java.io.*;
+import scala.io.Source;
 
 public class HarvestScheduling implements Runnable {
 
@@ -14,7 +16,16 @@ public class HarvestScheduling implements Runnable {
     rng = new Random(seed);
   }
 
-  public void run(){
+  public void run() {
+
+    PrintWriter writer = null, writer2 = null;
+    try {
+      writer =
+        new PrintWriter(new File(String.format("src/etc/solutions/%d", seed)));
+      writer2 =
+        new PrintWriter(new File(String.format("src/etc/solutions/%d.svg", seed)));
+    } catch(FileNotFoundException e){}
+
     long startTime = System.nanoTime();
     int[][] dec = new int[Parameters.PERIODS][Parameters.UNITS];
 
@@ -28,14 +39,28 @@ public class HarvestScheduling implements Runnable {
     }
 
     SchedulePlan schedule = new SchedulePlan(plan, dec);
-    System.out.printf("Inicial (%d): %.2f\n", seed, schedule.objective());
 
     SchedulePlan bestSolution = TabuSearch.run(Parameters.ITERATIONS, schedule, seed);
 
-    System.out.printf("Mejor solución (%d): %.2f\n", seed, bestSolution.objective());
     long endTime = System.nanoTime();
-    long totalTime = endTime - startTime;
-    System.out.printf("Tiempo total (%d): %.2f\n", seed, totalTime / 1000000000.0);
+    double totalTime = (endTime - startTime) / 1000000000.0;
+
+    String l1 = String.format("Solución inicial: %.2f", schedule.objective());
+    String l2 = String.format("Mejor solución: %.2f", bestSolution.objective());
+    String l3 = String.format("Semilla: %d", seed);
+    String l4 = String.format("Tiempo ejecución: %.2f", totalTime);
+
+    writer.println(l1);
+    writer.println(l2);
+    writer.println(l3);
+    writer.println(l4);
+
+    writer2.println(bestSolution.toSVG());
+
+    writer.flush();
+    writer.close();
+    writer2.flush();
+    writer2.close();
   }
 
 }

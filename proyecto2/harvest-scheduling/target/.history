@@ -235,3 +235,17 @@ clean
 cleanFiles
 doc
 run
+compile
+run
+compile
+run -901373260 1
+compile
+run 1 -901373260
+compile
+run 1 -901373260
+exit
+clean
+cleanFiles
+compile
+doc
+exit
