@@ -1,0 +1,12 @@
+El proyecto se ejecuta usando sbt en la carpeta harvest-scheduling.
+
+Comando para ejecutar: run <num_semillas> <semilla_inicial>
+
+Si los argumentos no se especifican ejecutará 1000 semillas con una semilla inicial aleatoria.
+
+Ejemplos: 
+
+[usuario@domain harvest-scheduling]$ sbt run
+[usuario@domain harvest-scheduling]$ sbt run 100
+[usuario@domain harvest-scheduling]$ sbt run 500 1241925
+
